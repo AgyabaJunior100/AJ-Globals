@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Size Guide</title>
+  <meta name="description" content="Find the perfect fit for your premium sports jerseys with our comprehensive size guide." />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9',
+            primary: '#1a365d',
+            secondary: '#2c5282'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .size-tabs .active {
+      border-bottom: 3px solid #d4af37;
+      color: #111111;
+      font-weight: 600;
+    }
+    .measurement-guide {
+      background: linear-gradient(135deg, #fdf6ec 0%, #f5e9d9 100%);
+    }
+    .size-chart tr:nth-child(even) {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .size-chart th {
+      background-color: #111111;
+      color: white;
+    }
+    .size-guide-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    @media (max-width: 640px) {
+      .mobile-menu {
+        transform: translateX(-100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="drops.html" class="hover:text-brandGold transition">Drops</a>
+        <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+        <a href="about.html" class="hover:text-brandGold transition">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="drops.html" class="hover:text-brandGold transition">Drops</a>
+          <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+          <a href="about.html" class="hover:text-brandGold transition">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+          <a href="size-guide.html" class="text-brandGold font-bold">Size Guide</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-6">Find Your Perfect Fit</h1>
+      <p class="text-lg text-brandGray max-w-2xl mx-auto">
+        Our premium jerseys are designed for optimal comfort and performance. Use this guide to select your ideal size.
+      </p>
+    </section>
+
+    <!-- Size Guide Tabs -->
+    <section class="mb-16">
+      <div class="size-tabs flex border-b border-brandCream mb-8">
+        <button class="tab-btn active px-6 py-3 text-sm font-medium" data-tab="mens">Men's Sizes</button>
+        <button class="tab-btn px-6 py-3 text-sm font-medium" data-tab="womens">Women's Sizes</button>
+        <button class="tab-btn px-6 py-3 text-sm font-medium" data-tab="youth">Youth Sizes</button>
+      </div>
+
+      <!-- Men's Size Chart -->
+      <div id="mens" class="tab-content active">
+        <div class="grid md:grid-cols-2 gap-12 mb-12">
+          <div>
+            <h3 class="font-display text-2xl font-bold mb-6">Men's Jersey Size Chart</h3>
+            <div class="overflow-x-auto">
+              <table class="size-chart w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th class="px-4 py-3 text-left">Size</th>
+                    <th class="px-4 py-3 text-left">Chest (in)</th>
+                    <th class="px-4 py-3 text-left">Length (in)</th>
+                    <th class="px-4 py-3 text-left">Sleeve (in)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">XS</td>
+                    <td class="px-4 py-3">34-36</td>
+                    <td class="px-4 py-3">26</td>
+                    <td class="px-4 py-3">8.5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">S</td>
+                    <td class="px-4 py-3">36-38</td>
+                    <td class="px-4 py-3">27</td>
+                    <td class="px-4 py-3">9</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">M</td>
+                    <td class="px-4 py-3">38-40</td>
+                    <td class="px-4 py-3">28</td>
+                    <td class="px-4 py-3">9.5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">L</td>
+                    <td class="px-4 py-3">40-42</td>
+                    <td class="px-4 py-3">29</td>
+                    <td class="px-4 py-3">10</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">XL</td>
+                    <td class="px-4 py-3">42-44</td>
+                    <td class="px-4 py-3">30</td>
+                    <td class="px-4 py-3">10.5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">2XL</td>
+                    <td class="px-4 py-3">44-46</td>
+                    <td class="px-4 py-3">31</td>
+                    <td class="px-4 py-3">11</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center">
+            <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                 alt="Men's jersey measurement guide" 
+                 class="size-guide-image rounded-lg shadow-md transition duration-300">
+            <p class="text-sm text-brandGray mt-4">
+              <i class="fas fa-info-circle text-brandGold mr-1"></i> Measure across the fullest part of the chest, keeping the tape measure horizontal.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Women's Size Chart -->
+      <div id="womens" class="tab-content hidden">
+        <div class="grid md:grid-cols-2 gap-12 mb-12">
+          <div>
+            <h3 class="font-display text-2xl font-bold mb-6">Women's Jersey Size Chart</h3>
+            <div class="overflow-x-auto">
+              <table class="size-chart w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th class="px-4 py-3 text-left">Size</th>
+                    <th class="px-4 py-3 text-left">Chest (in)</th>
+                    <th class="px-4 py-3 text-left">Length (in)</th>
+                    <th class="px-4 py-3 text-left">Sleeve (in)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">XS</td>
+                    <td class="px-4 py-3">30-32</td>
+                    <td class="px-4 py-3">24</td>
+                    <td class="px-4 py-3">7.5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">S</td>
+                    <td class="px-4 py-3">32-34</td>
+                    <td class="px-4 py-3">25</td>
+                    <td class="px-4 py-3">8</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">M</td>
+                    <td class="px-4 py-3">34-36</td>
+                    <td class="px-4 py-3">26</td>
+                    <td class="px-4 py-3">8.5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">L</td>
+                    <td class="px-4 py-3">36-38</td>
+                    <td class="px-4 py-3">27</td>
+                    <td class="px-4 py-3">9</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">XL</td>
+                    <td class="px-4 py-3">38-40</td>
+                    <td class="px-4 py-3">28</td>
+                    <td class="px-4 py-3">9.5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" 
+                 alt="Women's jersey measurement guide" 
+                 class="size-guide-image rounded-lg shadow-md transition duration-300">
+            <p class="text-sm text-brandGray mt-4">
+              <i class="fas fa-info-circle text-brandGold mr-1"></i> For women's jerseys, measure around the fullest part of your bust.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Youth Size Chart -->
+      <div id="youth" class="tab-content hidden">
+        <div class="grid md:grid-cols-2 gap-12 mb-12">
+          <div>
+            <h3 class="font-display text-2xl font-bold mb-6">Youth Jersey Size Chart</h3>
+            <div class="overflow-x-auto">
+              <table class="size-chart w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th class="px-4 py-3 text-left">Size</th>
+                    <th class="px-4 py-3 text-left">Chest (in)</th>
+                    <th class="px-4 py-3 text-left">Length (in)</th>
+                    <th class="px-4 py-3 text-left">Age Range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">YS</td>
+                    <td class="px-4 py-3">26-28</td>
+                    <td class="px-4 py-3">20</td>
+                    <td class="px-4 py-3">6-8</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">YM</td>
+                    <td class="px-4 py-3">28-30</td>
+                    <td class="px-4 py-3">22</td>
+                    <td class="px-4 py-3">8-10</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">YL</td>
+                    <td class="px-4 py-3">30-32</td>
+                    <td class="px-4 py-3">24</td>
+                    <td class="px-4 py-3">10-12</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">YXL</td>
+                    <td class="px-4 py-3">32-34</td>
+                    <td class="px-4 py-3">26</td>
+                    <td class="px-4 py-3">12-14</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center">
+            <img src="https://images.unsplash.com/photo-1600185365480-7301ff975a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                 alt="Youth jersey measurement guide" 
+                 class="size-guide-image rounded-lg shadow-md transition duration-300">
+            <p class="text-sm text-brandGray mt-4">
+              <i class="fas fa-info-circle text-brandGold mr-1"></i> Youth sizes are designed for growing athletes with room for movement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Measurement Guide -->
+    <section class="measurement-guide p-8 rounded-lg mb-16">
+      <h2 class="font-display text-3xl font-bold mb-6 text-center">How to Measure</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+            <i class="fas fa-ruler text-2xl text-brandGold"></i>
+          </div>
+          <h3 class="font-bold mb-2">Chest/Bust</h3>
+          <p class="text-sm text-brandGray">
+            Measure around the fullest part of your chest/bust, keeping the tape measure horizontal and snug but not tight.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+            <i class="fas fa-tshirt text-2xl text-brandGold"></i>
+          </div>
+          <h3 class="font-bold mb-2">Length</h3>
+          <p class="text-sm text-brandGray">
+            Measure from the highest point of the shoulder down to the bottom hem of the jersey.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+            <i class="fas fa-hand-paper text-2xl text-brandGold"></i>
+          </div>
+          <h3 class="font-bold mb-2">Sleeve</h3>
+          <p class="text-sm text-brandGray">
+            Measure from the shoulder seam to the end of the sleeve (for short sleeves) or wrist (for long sleeves).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fit Guide -->
+    <section class="mb-16">
+      <h2 class="font-display text-3xl font-bold mb-6 text-center">Fit Guide</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-brandCream">
+          <h3 class="font-bold text-lg mb-3 flex items-center">
+            <i class="fas fa-male text-brandGold mr-2"></i> Standard Fit
+          </h3>
+          <p class="text-brandGray mb-4">
+            Our standard fit jerseys are designed for comfort and mobility. They have a relaxed silhouette that allows for full range of motion.
+          </p>
+          <ul class="text-sm text-brandGray space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Roomier in chest and shoulders</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Straight cut through torso</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Standard sleeve length</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-brandCream">
+          <h3 class="font-bold text-lg mb-3 flex items-center">
+            <i class="fas fa-running text-brandGold mr-2"></i> Athletic Fit
+          </h3>
+          <p class="text-brandGray mb-4">
+            Our athletic fit jerseys are tailored for performance with a more contoured silhouette that follows the body's natural shape.
+          </p>
+          <ul class="text-sm text-brandGray space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Tapered through torso</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Extended shoulder articulation</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-brandGold mr-2 mt-1"></i>
+              <span>Shorter hem for mobility</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Size Recommendation -->
+    <section class="bg-brandCream p-8 rounded-lg mb-16">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-display text-3xl font-bold mb-4">Unsure About Your Size?</h2>
+        <p class="text-brandGray mb-6">
+          Our customer service team is happy to help you find your perfect fit. Contact us with your measurements and we'll recommend the best size for you.
+        </p>
+        <a href="contact.html" class="inline-block bg-brandBlack text-white px-8 py-3 rounded hover:bg-brandGold hover:text-brandBlack transition font-medium">
+          <i class="fas fa-envelope mr-2"></i> Contact Us
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="catalog.html" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="new-arrivals.html" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="best-sellers.html" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="sale-items.html" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about-us.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Size guide tabs functionality
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+    
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons and contents
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        tabContents.forEach(content => content.classList.add("hidden"));
+        
+        // Add active class to clicked button
+        button.classList.add("active");
+        
+        // Show corresponding content
+        const tabId = button.dataset.tab;
+        document.getElementById(tabId).classList.remove("hidden");
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

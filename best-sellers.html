@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JerseyStory - Premium Sports Jerseys</title>
+  <meta name="description" content="JerseyStory delivers premium sports jerseys with global style, limited drops, and unmatched quality." />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a365d',
+            secondary: '#2c5282',
+            accent: '#d69e2e',
+            light: '#f7fafc',
+            dark: '#1a202c',
+            gray: '#718096',
+            cream: '#f5f0e6'
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            display: ['"Bebas Neue"', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+    .cart-item:hover {
+      background-color: rgba(214, 158, 46, 0.05);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    .mobile-menu {
+      transform: translateX(-100%);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    .footer-links li {
+      position: relative;
+      padding-left: 1rem;
+    }
+    .footer-links li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #d69e2e;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .footer-links li:hover:before {
+      opacity: 1;
+      left: -0.5rem;
+    }
+    .newsletter-input {
+      border: none;
+      border-bottom: 2px solid #d69e2e;
+      background: transparent;
+      color: white;
+    }
+    .newsletter-input:focus {
+      outline: none;
+      border-bottom-color: white;
+    }
+    .newsletter-input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body class="bg-light text-dark font-sans">
+  <!-- Header -->
+  <header class="sticky top-0 bg-white/95 z-50 shadow-sm border-b border-cream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-display text-3xl font-bold tracking-tight hover:text-accent transition">JerseyStory</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="#drops" class="hover:text-accent transition">New Drops</a>
+        <a href="#collections" class="hover:text-accent transition">Collections</a>
+        <a href="#about" class="hover:text-accent transition">About</a>
+        <a href="#contact" class="hover:text-accent transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-accent transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-accent text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-2xl font-bold mb-8">JerseyStory</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="#drops" class="hover:text-accent transition">New Drops</a>
+          <a href="#collections" class="hover:text-accent transition">Collections</a>
+          <a href="#about" class="hover:text-accent transition">About</a>
+          <a href="#contact" class="hover:text-accent transition">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="font-display text-5xl md:text-7xl mb-6">Legends Live Here</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Authentic jerseys from your favorite teams and players. Limited edition drops weekly.</p>
+        <a href="#drops" class="inline-block bg-accent hover:bg-yellow-600 text-dark font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+          Shop Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section id="drops" class="py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-2 text-center font-display">Best Sellers</h2>
+        <p class="text-lg mb-12 text-center text-gray max-w-2xl mx-auto">Explore our most popular jerseys loved by fans worldwide</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Product 1 -->
+          <div class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1543071295-5e7c3532caf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                   alt="Soccer Jersey" 
+                   class="product-image w-full h-64 object-cover transition duration-300">
+              <div class="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-2 py-1 rounded">
+                NEW
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-1">Classic Soccer Jersey</h3>
+              <p class="text-gray text-sm mb-3">Limited Edition 2023</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$89.99</span>
+                <button class="add-to-cart bg-primary hover:bg-secondary text-white px-4 py-2 rounded-full transition"
+                        data-id="1"
+                        data-name="Classic Soccer Jersey"
+                        data-price="89.99"
+                        data-image="https://images.unsplash.com/photo-1543071295-5e7c3532caf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Product 2 -->
+          <div class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                   alt="Basketball Jersey" 
+                   class="product-image w-full h-64 object-cover transition duration-300">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-1">Vintage Basketball Jersey</h3>
+              <p class="text-gray text-sm mb-3">Retro Collection</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$79.99</span>
+                <button class="add-to-cart bg-primary hover:bg-secondary text-white px-4 py-2 rounded-full transition"
+                        data-id="2"
+                        data-name="Vintage Basketball Jersey"
+                        data-price="79.99"
+                        data-image="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Product 3 -->
+          <div class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                   alt="Football Jersey" 
+                   class="product-image w-full h-64 object-cover transition duration-300">
+              <div class="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-2 py-1 rounded">
+                SALE
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-1">Pro Football Jersey</h3>
+              <p class="text-gray text-sm mb-3">2023 Season</p>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="font-bold text-lg">$69.99</span>
+                  <span class="text-gray text-sm line-through ml-2">$89.99</span>
+                </div>
+                <button class="add-to-cart bg-primary hover:bg-secondary text-white px-4 py-2 rounded-full transition"
+                        data-id="3"
+                        data-name="Pro Football Jersey"
+                        data-price="69.99"
+                        data-image="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Product 4 -->
+          <div class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600269452121-1f8226de7b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                   alt="Baseball Jersey" 
+                   class="product-image w-full h-64 object-cover transition duration-300">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-1">Classic Baseball Jersey</h3>
+              <p class="text-gray text-sm mb-3">Heritage Edition</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$74.99</span>
+                <button class="add-to-cart bg-primary hover:bg-secondary text-white px-4 py-2 rounded-full transition"
+                        data-id="4"
+                        data-name="Classic Baseball Jersey"
+                        data-price="74.99"
+                        data-image="https://images.unsplash.com/photo-1600269452121-1f8226de7b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <!-- About Column -->
+        <div>
+          <h4 class="font-display text-2xl font-bold mb-6">JerseyStory</h4>
+          <p class="text-gray-300 mb-6">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+          <div class="flex gap-4">
+            <a href="#" class="text-gray-300 hover:text-accent transition text-xl"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-300 hover:text-accent transition text-xl"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-300 hover:text-accent transition text-xl"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-300 hover:text-accent transition text-xl"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        
+        <!-- Shop Column -->
+        <div>
+          <h5 class="font-display text-xl font-bold mb-6">Shop</h5>
+          <ul class="space-y-3 text-gray-300 footer-links">
+            <li><a href="#" class="hover:text-accent transition">All Jerseys</a></li>
+            <li><a href="#" class="hover:text-accent transition">New Arrivals</a></li>
+            <li><a href="#" class="hover:text-accent transition">Best Sellers</a></li>
+            <li><a href="#" class="hover:text-accent transition">Limited Editions</a></li>
+            <li><a href="#" class="hover:text-accent transition">Sale Items</a></li>
+          </ul>
+        </div>
+        
+        <!-- Customer Service Column -->
+        <div>
+          <h5 class="font-display text-xl font-bold mb-6">Customer Service</h5>
+          <ul class="space-y-3 text-gray-300 footer-links">
+            <li><a href="#" class="hover:text-accent transition">Contact Us</a></li>
+            <li><a href="#" class="hover:text-accent transition">Shipping Policy</a></li>
+            <li><a href="#" class="hover:text-accent transition">Returns & Exchanges</a></li>
+            <li><a href="#" class="hover:text-accent transition">Size Guide</a></li>
+            <li><a href="#" class="hover:text-accent transition">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <!-- Newsletter Column -->
+        <div>
+          <h5 class="font-display text-xl font-bold mb-6">Stay Updated</h5>
+          <p class="text-gray-300 mb-4">Subscribe to our newsletter for exclusive drops and special offers.</p>
+          <form class="flex flex-col">
+            <input type="email" placeholder="Your email address" class="newsletter-input py-2 mb-4 focus:outline-none">
+            <button type="submit" class="bg-accent hover:bg-yellow-600 text-dark font-bold py-2 px-6 rounded transition">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm">
+        <p class="text-gray-300">&copy; <span id="year"></span> JerseyStory. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-300 hover:text-accent transition">Privacy Policy</a>
+          <a href="#" class="text-gray-300 hover:text-accent transition">Terms of Service</a>
+          <a href="#" class="text-gray-300 hover:text-accent transition">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+          <h3 class="text-2xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-accent transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-gray-400">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-gray-200">
+          <div class="flex justify-between mb-4 text-lg">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">$0.00</span>
+          </div>
+          <button class="w-full py-3 bg-dark text-white font-bold rounded hover:bg-accent hover:text-dark transition mb-2">
+            Checkout
+          </button>
+          <p class="text-xs text-gray-400 text-center">Free shipping on orders over $100</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-dark text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-accent"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("jsCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "$0.00";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-gray-200 last:border-0 transition">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-gray-500">$${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded hover:bg-gray-100" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded hover:bg-gray-100" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-gray-500 hover:text-red-500 mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("jsCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+        
+        const existingItem = cart.find(item => item.id === id);
+        
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+        
+        saveCart();
+        showAddedToCart();
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

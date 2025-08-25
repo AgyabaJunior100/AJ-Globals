@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Shipping Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    .shipping-step:hover .step-icon {
+      transform: rotate(10deg) scale(1.1);
+      background-color: rgba(212, 175, 55, 0.2);
+    }
+    .accordion-item {
+      border-bottom: 1px solid #f5e9d9;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 500px;
+    }
+    .accordion-item.active .accordion-button i {
+      transform: rotate(180deg);
+    }
+    .map-container {
+      height: 400px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+        <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+          <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+          <a href="shipping-info.html" class="text-brandGold transition">Shipping Info</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-6">Shipping Information</h1>
+      <p class="text-lg text-brandGray max-w-3xl mx-auto">
+        We deliver premium jerseys worldwide with care and precision. Below you'll find all the details about our shipping process, delivery times, and policies.
+      </p>
+    </section>
+
+    <!-- Shipping Process -->
+    <section class="mb-20">
+      <h2 class="font-display text-3xl font-bold mb-8 text-center">Our Shipping Process</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="shipping-step p-6 rounded-lg hover:bg-brandCream transition group">
+          <div class="step-icon w-16 h-16 bg-brandGold/10 text-brandGold rounded-full flex items-center justify-center mb-4 transition mx-auto">
+            <i class="fas fa-box-open text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">1. Order Processing</h3>
+          <p class="text-brandGray text-center">
+            Your order is carefully prepared within 1-2 business days. We inspect each jersey for quality before packaging.
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="shipping-step p-6 rounded-lg hover:bg-brandCream transition group">
+          <div class="step-icon w-16 h-16 bg-brandGold/10 text-brandGold rounded-full flex items-center justify-center mb-4 transition mx-auto">
+            <i class="fas fa-shipping-fast text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">2. Shipment</h3>
+          <p class="text-brandGray text-center">
+            Your package is shipped via premium carriers with tracking provided. Most orders ship within 24 hours of processing.
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="shipping-step p-6 rounded-lg hover:bg-brandCream transition group">
+          <div class="step-icon w-16 h-16 bg-brandGold/10 text-brandGold rounded-full flex items-center justify-center mb-4 transition mx-auto">
+            <i class="fas fa-home text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">3. Delivery</h3>
+          <p class="text-brandGray text-center">
+            Your jersey arrives at your doorstep in our premium packaging, ready to wear or collect.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shipping Rates & Times -->
+    <section class="mb-20">
+      <div class="bg-brandCream rounded-xl p-8 md:p-12">
+        <h2 class="font-display text-3xl font-bold mb-8 text-center">Shipping Rates & Delivery Times</h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-brandGold/30">
+                <th class="text-left py-4 px-4 font-semibold">Region</th>
+                <th class="text-left py-4 px-4 font-semibold">Standard Shipping</th>
+                <th class="text-left py-4 px-4 font-semibold">Express Shipping</th>
+                <th class="text-left py-4 px-4 font-semibold">Delivery Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Domestic -->
+              <tr class="border-b border-brandGold/10 hover:bg-brandDarkCream transition">
+                <td class="py-4 px-4">Domestic (Ghana)</td>
+                <td class="py-4 px-4">GHS 50</td>
+                <td class="py-4 px-4">GHS 120</td>
+                <td class="py-4 px-4">3-5 business days</td>
+              </tr>
+              
+              <!-- West Africa -->
+              <tr class="border-b border-brandGold/10 hover:bg-brandDarkCream transition">
+                <td class="py-4 px-4">West Africa</td>
+                <td class="py-4 px-4">GHS 150</td>
+                <td class="py-4 px-4">GHS 250</td>
+                <td class="py-4 px-4">5-10 business days</td>
+              </tr>
+              
+              <!-- Africa -->
+              <tr class="border-b border-brandGold/10 hover:bg-brandDarkCream transition">
+                <td class="py-4 px-4">Rest of Africa</td>
+                <td class="py-4 px-4">GHS 250</td>
+                <td class="py-4 px-4">GHS 400</td>
+                <td class="py-4 px-4">7-14 business days</td>
+              </tr>
+              
+              <!-- International -->
+              <tr class="border-b border-brandGold/10 hover:bg-brandDarkCream transition">
+                <td class="py-4 px-4">International</td>
+                <td class="py-4 px-4">GHS 400</td>
+                <td class="py-4 px-4">GHS 600</td>
+                <td class="py-4 px-4">10-21 business days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-start">
+            <div class="bg-brandGold/10 text-brandGold p-3 rounded-full mr-4">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div>
+              <h3 class="font-bold mb-2">Free Shipping Offer</h3>
+              <p class="text-brandGray">
+                Enjoy free standard shipping on all domestic orders over GHS 1000. International orders over GHS 2000 qualify for free standard shipping.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-20">
+      <h2 class="font-display text-3xl font-bold mb-8 text-center">Shipping FAQs</h2>
+      
+      <div class="max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="accordion-item mb-4">
+          <button class="accordion-button w-full flex justify-between items-center py-4 px-0 text-left font-semibold hover:text-brandGold transition">
+            <span>How can I track my order?</span>
+            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content px-0">
+            <p class="text-brandGray pb-4">
+              Once your order has shipped, you'll receive a confirmation email with your tracking number and a link to track your package. You can also track your order by logging into your account on our website.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="accordion-item mb-4">
+          <button class="accordion-button w-full flex justify-between items-center py-4 px-0 text-left font-semibold hover:text-brandGold transition">
+            <span>What if my package is lost or damaged?</span>
+            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content px-0">
+            <p class="text-brandGray pb-4">
+              We insure all shipments against loss or damage during transit. If your package arrives damaged or doesn't arrive within the expected timeframe, please contact our customer service team within 14 days of shipment, and we'll help resolve the issue.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="accordion-item mb-4">
+          <button class="accordion-button w-full flex justify-between items-center py-4 px-0 text-left font-semibold hover:text-brandGold transition">
+            <span>Do you ship to PO Boxes?</span>
+            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content px-0">
+            <p class="text-brandGray pb-4">
+              Yes, we can ship to PO Boxes for domestic orders. However, for international orders and express shipping options, we require a physical street address for delivery.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="accordion-item mb-4">
+          <button class="accordion-button w-full flex justify-between items-center py-4 px-0 text-left font-semibold hover:text-brandGold transition">
+            <span>Can I change my shipping address after ordering?</span>
+            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content px-0">
+            <p class="text-brandGray pb-4">
+              Address changes can only be made if your order hasn't been processed for shipping yet. Please contact us immediately at support@ajglobals.com with your order number and the correct shipping address.
+            </p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="accordion-item">
+          <button class="accordion-button w-full flex justify-between items-center py-4 px-0 text-left font-semibold hover:text-brandGold transition">
+            <span>Do you offer international returns?</span>
+            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content px-0">
+            <p class="text-brandGray pb-4">
+              Yes, we accept international returns. Customers are responsible for return shipping costs unless the return is due to our error. Please review our Returns Policy for complete details.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delivery Coverage -->
+    <section class="mb-20">
+      <h2 class="font-display text-3xl font-bold mb-8 text-center">Our Delivery Coverage</h2>
+      <div class="bg-brandBlack rounded-xl overflow-hidden">
+        <div class="map-container">
+          <!-- This would be replaced with an actual map integration in production -->
+          <div class="h-full w-full bg-brandGold/10 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-globe-africa text-5xl text-brandGold mb-4"></i>
+              <h3 class="text-xl font-bold mb-2">Worldwide Shipping</h3>
+              <p class="text-brandGray">
+                We ship to over 100 countries across all continents. Our network ensures your jersey arrives safely no matter where you are.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="text-center">
+      <h2 class="font-display text-3xl font-bold mb-4">Ready to Order?</h2>
+      <p class="text-lg text-brandGray mb-8 max-w-2xl mx-auto">
+        Browse our latest jersey collections and experience our premium shipping service.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="index.html#drops" class="bg-brandBlack text-white px-8 py-3 rounded font-semibold hover:bg-brandGold hover:text-brandBlack transition">
+          Shop Now
+        </a>
+        <a href="contact.html" class="border border-brandBlack px-8 py-3 rounded font-semibold hover:bg-brandBlack hover:text-white transition">
+          Contact Us
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#drops" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="index.html#new-arrivals" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="index.html#best-sellers" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="index.html#limited-editions" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="about.html#materials" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="about.html#sustainability" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // FAQ Accordion
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.accordion-item');
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

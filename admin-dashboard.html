@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - JerseyStory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .brandBlack { background-color: #1a202c; }
+        .brandWhite { color: #fff; }
+        .brandGold { color: #FFD700; background-color: #FFD700; }
+        .brandCream { background-color: #FFFDD0; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+    <header class="brandBlack text-brandWhite shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center"><i class="fas fa-user-shield mr-2"></i> Admin Dashboard</h1>
+            <nav class="flex gap-6 text-sm font-semibold">
+                <a href="index.html" class="hover:text-brandGold transition">Home</a>
+                <a href="#" class="hover:text-brandGold transition">Orders</a>
+                <a href="#" class="hover:text-brandGold transition">Products</a>
+                <a href="#" class="hover:text-brandGold transition">Users</a>
+                <a href="admin-settings.html" class="hover:text-brandGold transition">Settings</a>
+                <a href="#" class="hover:text-brandGold transition">Reports</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-8">Welcome, Admin!</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow p-6 flex items-center gap-4">
+                <i class="fas fa-shopping-cart text-3xl text-brandGold"></i>
+                <div>
+                    <div class="text-lg font-bold">Orders</div>
+                    <div class="text-2xl">128</div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex items-center gap-4">
+                <i class="fas fa-tshirt text-3xl text-brandGold"></i>
+                <div>
+                    <div class="text-lg font-bold">Products</div>
+                    <div class="text-2xl">54</div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex items-center gap-4">
+                <i class="fas fa-users text-3xl text-brandGold"></i>
+                <div>
+                    <div class="text-lg font-bold">Users</div>
+                    <div class="text-2xl">312</div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex items-center gap-4">
+                <i class="fas fa-chart-line text-3xl text-brandGold"></i>
+                <div>
+                    <div class="text-lg font-bold">Revenue</div>
+                    <div class="text-2xl">$12,340</div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold mb-4">Recent Orders</h3>
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="py-2">Order ID</th>
+                            <th class="py-2">Customer</th>
+                            <th class="py-2">Date</th>
+                            <th class="py-2">Status</th>
+                            <th class="py-2">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="py-2">#1001</td>
+                            <td class="py-2">John Doe</td>
+                            <td class="py-2">2025-08-20</td>
+                            <td class="py-2 text-green-600">Completed</td>
+                            <td class="py-2">$89.99</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2">#1002</td>
+                            <td class="py-2">Jane Smith</td>
+                            <td class="py-2">2025-08-21</td>
+                            <td class="py-2 text-yellow-600">Pending</td>
+                            <td class="py-2">$109.99</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2">#1003</td>
+                            <td class="py-2">Alex Lee</td>
+                            <td class="py-2">2025-08-22</td>
+                            <td class="py-2 text-red-600">Cancelled</td>
+                            <td class="py-2">$54.99</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold mb-4">Sales Overview</h3>
+                <canvas id="salesChart" height="180"></canvas>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
+            <div class="flex gap-4 flex-wrap">
+                <button class="bg-brandGold text-white px-6 py-2 rounded font-bold hover:bg-yellow-600 transition"><i class="fas fa-plus mr-2"></i>Add Product</button>
+                <button class="bg-brandBlack text-white px-6 py-2 rounded font-bold hover:bg-gray-800 transition"><i class="fas fa-user-plus mr-2"></i>Add User</button>
+                <a href="admin-settings.html" class="bg-brandCream text-brandBlack px-6 py-2 rounded font-bold hover:bg-yellow-100 transition flex items-center"><i class="fas fa-cog mr-2"></i>Settings</a>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded font-bold hover:bg-blue-700 transition"><i class="fas fa-file-download mr-2"></i>Export Data</button>
+            </div>
+        </div>
+    </main>
+    <footer class="brandBlack text-brandWhite py-8 text-center mt-12">
+        <p>&copy; <span id="year"></span> JerseyStory Admin. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Generate random sales data for a "live" effect
+        function getRandomSalesData() {
+            return Array.from({length: 7}, () => Math.floor(Math.random() * 5000) + 1000);
+        }
+
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Sales',
+                    data: getRandomSalesData(),
+                    borderColor: '#FFD700',
+                    backgroundColor: 'rgba(255,215,0,0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Update chart every 2 seconds to simulate live data
+        setInterval(() => {
+            salesChart.data.datasets[0].data = getRandomSalesData();
+            salesChart.update();
+        }, 2000);
+    </script>
+</body>
+</html>

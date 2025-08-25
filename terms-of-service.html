@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | AJ Globals</title>
+  <meta name="description" content="AJ Globals Terms of Service - Premium Sports Jerseys">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .terms-section {
+      scroll-margin-top: 100px;
+    }
+    .terms-nav a.active {
+      color: #d4af37;
+      border-left: 2px solid #d4af37;
+    }
+    .highlight-box {
+      background-color: rgba(212, 175, 55, 0.05);
+      border-left: 3px solid #d4af37;
+    }
+    @media (max-width: 768px) {
+      .terms-nav {
+        position: static;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">
+        <i class="fas fa-tshirt mr-2"></i>AJ Globals
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+        <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden transform -translate-x-full">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">
+          <i class="fas fa-tshirt mr-2"></i>AJ Globals
+        </h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+          <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+          <a href="terms-of-service.html" class="text-brandGold transition">Terms</a>
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+    <div class="flex flex-col md:flex-row gap-12">
+      <!-- Sidebar Navigation -->
+      <aside class="terms-nav md:w-64 flex-shrink-0 md:sticky md:top-28 md:h-[calc(100vh-7rem)]">
+        <div class="bg-brandCream p-6 rounded-lg">
+          <h2 class="font-display text-xl font-bold mb-6">Terms of Service</h2>
+          <nav class="space-y-3">
+            <a href="#introduction" class="block pl-4 py-1 hover:text-brandGold transition active">Introduction</a>
+            <a href="#orders" class="block pl-4 py-1 hover:text-brandGold transition">Orders & Payments</a>
+            <a href="#shipping" class="block pl-4 py-1 hover:text-brandGold transition">Shipping & Delivery</a>
+            <a href="#returns" class="block pl-4 py-1 hover:text-brandGold transition">Returns & Exchanges</a>
+            <a href="#intellectual" class="block pl-4 py-1 hover:text-brandGold transition">Intellectual Property</a>
+            <a href="#liability" class="block pl-4 py-1 hover:text-brandGold transition">Limitation of Liability</a>
+            <a href="#changes" class="block pl-4 py-1 hover:text-brandGold transition">Changes to Terms</a>
+            <a href="#contact" class="block pl-4 py-1 hover:text-brandGold transition">Contact Information</a>
+          </nav>
+        </div>
+      </aside>
+      
+      <!-- Terms Content -->
+      <div class="flex-1">
+        <div class="mb-12">
+          <h1 class="font-display text-3xl md:text-4xl font-bold mb-4">Terms of Service</h1>
+          <p class="text-brandGray">Last updated: <span id="currentDate"></span></p>
+        </div>
+        
+        <div class="space-y-12">
+          <!-- Introduction -->
+          <section id="introduction" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">1. Introduction</h2>
+            <div class="space-y-4 text-brandGray">
+              <p>Welcome to AJ Globals ("we," "our," or "us"). These Terms of Service ("Terms") govern your access to and use of our website, products, and services (collectively, the "Services").</p>
+              <p>By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use our Services.</p>
+              <div class="highlight-box p-4 my-6">
+                <p class="font-semibold text-brandBlack"><i class="fas fa-exclamation-circle mr-2 text-brandGold"></i>Important Notice</p>
+                <p class="mt-2">Our jerseys are limited edition items. Once sold out, we cannot guarantee restocking. All sales are final unless otherwise stated.</p>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Orders & Payments -->
+          <section id="orders" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">2. Orders & Payments</h2>
+            <div class="space-y-4 text-brandGray">
+              <h3 class="font-semibold text-brandBlack">2.1 Order Acceptance</h3>
+              <p>All orders are subject to availability and confirmation of the order price. We reserve the right to refuse or cancel any order for any reason at any time.</p>
+              
+              <h3 class="font-semibold text-brandBlack">2.2 Pricing</h3>
+              <p>Prices for our products are subject to change without notice. We are not responsible for typographical errors regarding price or any other matter.</p>
+              
+              <h3 class="font-semibold text-brandBlack">2.3 Payment Methods</h3>
+              <p>We accept various payment methods including credit/debit cards, PayPal, and other payment processors as indicated at checkout.</p>
+              
+              <h3 class="font-semibold text-brandBlack">2.4 Taxes</h3>
+              <p>You are responsible for any applicable sales tax, import duties, or other taxes that may apply to your order.</p>
+            </div>
+          </section>
+          
+          <!-- Shipping & Delivery -->
+          <section id="shipping" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">3. Shipping & Delivery</h2>
+            <div class="space-y-4 text-brandGray">
+              <h3 class="font-semibold text-brandBlack">3.1 Processing Time</h3>
+              <p>Orders are typically processed within 1-3 business days. Processing times may be longer during peak seasons or for custom orders.</p>
+              
+              <h3 class="font-semibold text-brandBlack">3.2 Shipping Methods</h3>
+              <p>We offer various shipping options with different delivery times and costs. Shipping costs will be displayed at checkout.</p>
+              
+              <h3 class="font-semibold text-brandBlack">3.3 Delivery Estimates</h3>
+              <p>Delivery estimates are provided by carriers and are not guaranteed. We are not responsible for delays caused by shipping carriers or customs.</p>
+              
+              <h3 class="font-semibold text-brandBlack">3.4 International Orders</h3>
+              <p>International customers are responsible for any customs fees, import duties, or taxes that may apply. These charges are not included in the product or shipping costs.</p>
+            </div>
+          </section>
+          
+          <!-- Returns & Exchanges -->
+          <section id="returns" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">4. Returns & Exchanges</h2>
+            <div class="space-y-4 text-brandGray">
+              <h3 class="font-semibold text-brandBlack">4.1 Return Policy</h3>
+              <p>Due to the limited edition nature of our products, all sales are final unless the item arrives damaged or defective. In such cases, please contact us within 7 days of delivery.</p>
+              
+              <h3 class="font-semibold text-brandBlack">4.2 Damaged Items</h3>
+              <p>If your item arrives damaged, please contact us immediately with photos of the damage. We will work with you to resolve the issue, which may include replacement or refund.</p>
+              
+              <h3 class="font-semibold text-brandBlack">4.3 Wrong Items</h3>
+              <p>If you receive the wrong item, please contact us within 7 days of delivery. We will arrange for return shipping and send the correct item if available.</p>
+            </div>
+          </section>
+          
+          <!-- Intellectual Property -->
+          <section id="intellectual" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">5. Intellectual Property</h2>
+            <div class="space-y-4 text-brandGray">
+              <p>All content included on our website, such as text, graphics, logos, images, and software, is the property of AJ Globals or its content suppliers and protected by international copyright laws.</p>
+              <p>The AJ Globals name and logo, and all related names, logos, product and service names, designs, and slogans are trademarks of AJ Globals or its affiliates.</p>
+              <p>You may not use such marks without our prior written permission. All other names, logos, product and service names, designs, and slogans on this website are the trademarks of their respective owners.</p>
+            </div>
+          </section>
+          
+          <!-- Limitation of Liability -->
+          <section id="liability" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">6. Limitation of Liability</h2>
+            <div class="space-y-4 text-brandGray">
+              <p>To the fullest extent permitted by law, in no event will AJ Globals, its affiliates, or their licensors, service providers, employees, agents, officers, or directors be liable for damages of any kind, under any legal theory, arising out of or in connection with your use, or inability to use, the Services, any websites linked to it, any content on the Services or such other websites, including any direct, indirect, special, incidental, consequential, or punitive damages.</p>
+              <p>The foregoing does not affect any liability which cannot be excluded or limited under applicable law.</p>
+            </div>
+          </section>
+          
+          <!-- Changes to Terms -->
+          <section id="changes" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">7. Changes to Terms</h2>
+            <div class="space-y-4 text-brandGray">
+              <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
+              <p>By continuing to access or use our Services after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Services.</p>
+            </div>
+          </section>
+          
+          <!-- Contact Information -->
+          <section id="contact" class="terms-section">
+            <h2 class="font-display text-2xl font-bold mb-4">8. Contact Information</h2>
+            <div class="space-y-4 text-brandGray">
+              <p>If you have any questions about these Terms, please contact us:</p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>By email: <a href="mailto:legal@ajglobals.com" class="text-brandGold hover:underline">legal@ajglobals.com</a></li>
+                <li>By visiting our <a href="contact.html" class="text-brandGold hover:underline">contact page</a></li>
+                <li>By mail: AJ Globals Legal Department, 123 Jersey Street, Accra, Ghana</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="catalog.html" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="new-arrivals.html" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="best-sellers.html" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="sale-items.html" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about-us.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current date in terms
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("currentDate").textContent = new Date().toLocaleDateString('en-US', options);
+    
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("transform", "-translate-x-full");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("transform", "-translate-x-full");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("transform", "-translate-x-full");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Highlight current section in terms navigation
+    const sections = document.querySelectorAll('.terms-section');
+    const navLinks = document.querySelectorAll('.terms-nav a');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

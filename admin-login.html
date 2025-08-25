@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - AJ Globals</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-image: linear-gradient(135deg, #fdf6ec 0%, #f5e9d9 100%);
+    }
+    .login-container {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .login-container:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    .input-field:focus {
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+    }
+    .btn-login:hover {
+      transform: translateY(-2px);
+    }
+    .btn-login:active {
+      transform: translateY(0);
+    }
+    .password-toggle {
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    @media (max-width: 640px) {
+      .login-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="font-body min-h-screen flex items-center justify-center p-4">
+  <div class="login-container bg-brandWhite rounded-xl p-8 w-full max-w-md">
+    <div class="text-center mb-8">
+      <div class="flex items-center justify-center mb-4">
+        <div class="bg-brandGold/10 p-3 rounded-full">
+          <i class="fas fa-user-shield text-3xl text-brandGold"></i>
+        </div>
+      </div>
+      <h1 class="text-3xl font-display font-bold text-brandBlack mb-2">Admin Portal</h1>
+      <p class="text-brandGray">Enter your credentials to access the dashboard</p>
+    </div>
+
+    <form id="adminLoginForm" class="space-y-6">
+      <div class="space-y-4">
+        <div>
+          <label for="username" class="block text-sm font-medium text-brandBlack mb-1">Username</label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              placeholder="Enter your username" 
+              class="input-field w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brandGold transition"
+              required
+            >
+            <i class="fas fa-user absolute right-3 top-1/2 transform -translate-y-1/2 text-brandGray"></i>
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-brandBlack mb-1">Password</label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="Enter your password" 
+              class="input-field w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-brandGold transition pr-10"
+              required
+            >
+            <i class="fas fa-eye password-toggle text-brandGray" id="togglePassword"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input 
+            id="remember-me" 
+            name="remember-me" 
+            type="checkbox" 
+            class="h-4 w-4 text-brandGold focus:ring-brandGold border-gray-300 rounded"
+          >
+          <label for="remember-me" class="ml-2 block text-sm text-brandGray">Remember me</label>
+        </div>
+        <a href="#" class="text-sm text-brandGold hover:text-yellow-600">Forgot password?</a>
+      </div>
+
+      <div id="loginError" class="hidden bg-red-50 border-l-4 border-red-500 p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <i class="fas fa-exclamation-circle text-red-500"></i>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-red-700">Invalid username or password. Please try again.</p>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login w-full bg-brandGold text-white font-semibold py-3 px-4 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-brandGold focus:ring-offset-2 transition-all duration-300">
+        <i class="fas fa-sign-in-alt mr-2"></i> Sign In
+      </button>
+
+      <div class="text-center text-sm text-brandGray mt-4">
+        <a href="index.html" class="font-medium text-brandGold hover:text-yellow-600">
+          <i class="fas fa-arrow-left mr-1"></i> Back to Main Site
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('adminLoginForm');
+      const togglePassword = document.getElementById('togglePassword');
+      const password = document.getElementById('password');
+      const errorDiv = document.getElementById('loginError');
+
+      // Toggle password visibility
+      togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('fa-eye');
+      });
+
+      // Form submission
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        fetch('http://localhost:5000/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.token) {
+            localStorage.setItem('adminToken', data.token);
+            window.location.href = 'admin-dashboard.html';
+          } else {
+            // Show error
+            document.getElementById('loginError').classList.remove('hidden');
+          }
+        });
+      });
+
+      // Add animation on load
+      const container = document.querySelector('.login-container');
+      container.classList.add('animate-[fade-in_0.5s_ease-in-out]');
+    });
+  </script>
+</body>
+</html>

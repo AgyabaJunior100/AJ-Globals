@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Returns & Exchanges</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .policy-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-content.open {
+      max-height: 500px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <!-- Header -->
+  <header class="sticky top-0 bg-white/95 z-50 shadow-sm border-b border-gray-100 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-bold text-2xl tracking-tight hover:text-yellow-600 transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="#" class="hover:text-yellow-600 transition">Shop</a>
+        <a href="#" class="hover:text-yellow-600 transition">Collections</a>
+        <a href="#" class="hover:text-yellow-600 transition">About</a>
+        <a href="#" class="hover:text-yellow-600 transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-yellow-600 transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-yellow-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out transform -translate-x-full md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="#" class="hover:text-yellow-600 transition">Shop</a>
+          <a href="#" class="hover:text-yellow-600 transition">Collections</a>
+          <a href="#" class="hover:text-yellow-600 transition">About</a>
+          <a href="#" class="hover:text-yellow-600 transition">Contact</a>
+          <a href="#" class="hover:text-yellow-600 transition">Returns</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Returns & Exchanges</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">We want you to love your AJ Globals jersey. If you're not completely satisfied, we're here to help.</p>
+    </section>
+
+    <!-- Policy Overview Cards -->
+    <section class="mb-20 grid md:grid-cols-3 gap-8">
+      <div class="policy-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-undo-alt text-yellow-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Easy Returns</h3>
+        <p class="text-gray-600">Not happy with your purchase? Return it within 30 days for a full refund.</p>
+      </div>
+      
+      <div class="policy-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-exchange-alt text-yellow-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Simple Exchanges</h3>
+        <p class="text-gray-600">Need a different size or color? We'll exchange it at no extra cost.</p>
+      </div>
+      
+      <div class="policy-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-shipping-fast text-yellow-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Free Return Shipping</h3>
+        <p class="text-gray-600">We cover return shipping costs for all domestic exchanges.</p>
+      </div>
+    </section>
+
+    <!-- Detailed Policy Section -->
+    <section class="mb-20">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-8 border-b border-gray-100">
+          <h2 class="text-2xl font-bold mb-4">Our Return Policy</h2>
+          <p class="text-gray-600 mb-6">To be eligible for a return or exchange, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. You'll also need the receipt or proof of purchase.</p>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-lg font-semibold mb-2 flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i> Eligible for Return
+              </h3>
+              <ul class="text-gray-600 space-y-2">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                  <span>Items within 30 days of delivery</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                  <span>Unworn, unused with original tags</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2 text-xs"></i>
+                  <span>In original packaging</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-semibold mb-2 flex items-center">
+                <i class="fas fa-times-circle text-red-500 mr-2"></i> Not Eligible
+              </h3>
+              <ul class="text-gray-600 space-y-2">
+                <li class="flex items-start">
+                  <i class="fas fa-times text-red-500 mt-1 mr-2 text-xs"></i>
+                  <span>Items past 30 days</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-times text-red-500 mt-1 mr-2 text-xs"></i>
+                  <span>Worn or used items</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-times text-red-500 mt-1 mr-2 text-xs"></i>
+                  <span>Custom or personalized items</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="p-8">
+          <h2 class="text-2xl font-bold mb-4">How to Return</h2>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4 mt-1">1</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Initiate Your Return</h3>
+                <p class="text-gray-600">Visit our returns portal and enter your order number and email address to start your return.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4 mt-1">2</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Pack Your Item</h3>
+                <p class="text-gray-600">Place the item in its original packaging with all tags attached. Include the return slip in your package.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4 mt-1">3</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Ship It Back</h3>
+                <p class="text-gray-600">Attach the prepaid shipping label we provide and drop off at any carrier location.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-yellow-100 text-yellow-800 rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4 mt-1">4</div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Receive Your Refund</h3>
+                <p class="text-gray-600">Once we receive and inspect your return, we'll process your refund within 5 business days.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-20">
+      <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+      
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div class="accordion-item bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+          <button class="accordion-btn w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition">
+            <span class="text-lg font-semibold">How long does it take to process a return?</span>
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content">
+            <div class="px-6 pb-6 pt-2 text-gray-600">
+              Once we receive your return, it typically takes 3-5 business days to process. You'll receive an email notification once your refund has been issued. The time it takes for the refund to appear in your account depends on your payment method and financial institution.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+          <button class="accordion-btn w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition">
+            <span class="text-lg font-semibold">Do I have to pay for return shipping?</span>
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content">
+            <div class="px-6 pb-6 pt-2 text-gray-600">
+              For exchanges and domestic returns, we provide a prepaid return shipping label at no cost to you. International returns are subject to return shipping fees, which will be deducted from your refund amount.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+          <button class="accordion-btn w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition">
+            <span class="text-lg font-semibold">Can I exchange an item for a different size or color?</span>
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content">
+            <div class="px-6 pb-6 pt-2 text-gray-600">
+              Absolutely! We offer free exchanges for size or color changes within 30 days of delivery. Simply select "Exchange" when initiating your return and specify the new size or color you'd like. If the new item has a different price, we'll either refund the difference or charge the remaining balance.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+          <button class="accordion-btn w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition">
+            <span class="text-lg font-semibold">What if my item arrives damaged or defective?</span>
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content">
+            <div class="px-6 pb-6 pt-2 text-gray-600">
+              We're sorry to hear that! Please contact our customer service team within 7 days of delivery with photos of the damaged item and your order number. We'll arrange for a free return and send you a replacement at no additional cost, or issue a full refund if you prefer.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+          <button class="accordion-btn w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition">
+            <span class="text-lg font-semibold">How will I receive my refund?</span>
+            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content">
+            <div class="px-6 pb-6 pt-2 text-gray-600">
+              Refunds are issued to the original payment method used for purchase. Credit/debit card refunds typically appear within 5-10 business days after we process them. For PayPal payments, refunds are usually available immediately. If you paid with a gift card, we'll issue a new gift card for the refund amount.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-yellow-600 text-white rounded-xl p-12 text-center">
+      <h2 class="text-3xl font-bold mb-4">Need Help With Your Return?</h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">Our customer service team is here to assist you with any questions about returns or exchanges.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#" class="bg-white text-yellow-800 font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition">Start a Return</a>
+        <a href="#" class="border-2 border-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-yellow-800 transition">Contact Support</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-gray-400 text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-yellow-400 transition">All Jerseys</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">New Arrivals</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">Best Sellers</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Customer Service</h5>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-yellow-400 transition">Contact Us</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">Shipping Info</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">Returns & Exchanges</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Connect With Us</h5>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>
+              <div class="flex gap-4 mt-2">
+                <a href="#" target="_blank" class="hover:text-yellow-400 transition"><i class="fab fa-instagram text-lg"></i></a>
+                <a href="#" target="_blank" class="hover:text-yellow-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                <a href="#" target="_blank" class="hover:text-yellow-400 transition"><i class="fab fa-facebook-f text-lg"></i></a>
+              </div>
+            </li>
+            <li class="mt-4">
+              <p class="text-sm">Subscribe to our newsletter</p>
+              <div class="flex mt-2">
+                <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 w-full">
+                <button class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded-r-lg transition">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between text-sm">
+        <p class="text-gray-400">&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-yellow-400 transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-yellow-400"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("-translate-x-full");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("-translate-x-full");
+      document.body.style.overflow = "";
+    });
+    
+    // Accordion functionality
+    const accordionBtns = document.querySelectorAll(".accordion-btn");
+    
+    accordionBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.closest(".accordion-item");
+        const content = item.querySelector(".accordion-content");
+        const icon = btn.querySelector("i");
+        
+        // Toggle the clicked item
+        content.classList.toggle("open");
+        icon.classList.toggle("transform");
+        icon.classList.toggle("rotate-180");
+        
+        // Close other open items
+        accordionBtns.forEach(otherBtn => {
+          if (otherBtn !== btn) {
+            const otherItem = otherBtn.closest(".accordion-item");
+            const otherContent = otherItem.querySelector(".accordion-content");
+            const otherIcon = otherBtn.querySelector("i");
+            
+            otherContent.classList.remove("open");
+            otherIcon.classList.remove("transform");
+            otherIcon.classList.remove("rotate-180");
+          }
+        });
+      });
+    });
+    
+    // Show added to cart notification (demo)
+    function showAddedToCart() {
+      const notification = document.getElementById("addedToCart");
+      notification.classList.remove("hidden");
+      
+      setTimeout(() => {
+        notification.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Demo cart button functionality
+    const cartBtn = document.getElementById("cartBtn");
+    cartBtn.addEventListener("click", showAddedToCart);
+  </script>
+</body>
+</html>

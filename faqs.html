@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Premium Sports Jerseys - FAQs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+    .faq-item.active .faq-toggle i {
+      transform: rotate(180deg);
+    }
+    .faq-toggle i {
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+        <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+          <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+          <a href="faq.html" class="text-brandGold font-bold">FAQs</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Hero Section -->
+    <section class="text-center mb-16">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+      <p class="text-brandGray text-lg max-w-2xl mx-auto">Find answers to common questions about our premium sports jerseys, ordering process, shipping, and more.</p>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <div class="space-y-4">
+      <!-- FAQ Item 1 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">What makes AJ Globals jerseys different from others?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray">Our jerseys are crafted with premium materials, featuring exclusive designs that blend global style with sports heritage. Each piece undergoes rigorous quality control and is produced in limited quantities to ensure exclusivity. We use advanced moisture-wicking fabrics and reinforced stitching for durability.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">How do I know what size to order?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray mb-4">We provide detailed size charts for each product. Measure your chest, waist, and hips, then compare with our measurements. Our jerseys have an athletic fit - if you prefer a looser fit, consider sizing up.</p>
+          <p class="text-brandGray">For personalized sizing advice, contact our customer service team with your measurements and we'll recommend the best size for you.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">What is your return and exchange policy?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray mb-4">We accept returns and exchanges within 14 days of delivery. Items must be unworn, unwashed, with all original tags attached. Final sale items (marked as such) cannot be returned or exchanged.</p>
+          <p class="text-brandGray">To initiate a return, visit our Returns Center in your account or contact our customer service team. Return shipping is the customer's responsibility unless the item arrived damaged or defective.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">How long does shipping take?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray mb-4">Standard shipping typically takes 3-5 business days within the US, 5-10 business days internationally. Expedited shipping options are available at checkout.</p>
+          <p class="text-brandGray">During high-demand periods (new drops, holidays), processing may take an additional 1-2 business days. You'll receive tracking information as soon as your order ships.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">Do you offer customization or personalization?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray mb-4">Yes! We offer limited customization options for our premium jerseys. You can add your name, preferred number, or select from our curated customization options.</p>
+          <p class="text-brandGray">Custom orders take 7-10 additional business days to process and cannot be returned unless defective. Visit our Custom Jersey Builder or contact us for special requests.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">How do I care for my AJ Globals jersey?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray mb-4">To maintain your jersey's premium quality:</p>
+          <ul class="text-brandGray list-disc pl-5 space-y-2">
+            <li>Machine wash cold with similar colors</li>
+            <li>Use mild detergent and avoid bleach</li>
+            <li>Turn inside out before washing</li>
+            <li>Hang dry or tumble dry low</li>
+            <li>Iron on low heat if needed (avoid printed areas)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ Item 7 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">Are your jerseys officially licensed?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray">Our jerseys are inspired by global sports culture but are original AJ Globals designs. We collaborate with artists and designers worldwide to create unique pieces that celebrate sports heritage without infringing on official team branding.</p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 8 -->
+      <div class="faq-item border border-brandCream rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+          <h3 class="font-bold text-lg">How often do you release new drops?</h3>
+          <i class="fas fa-chevron-down text-brandGold"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-brandGray">We release limited-edition drops quarterly, with occasional surprise releases throughout the year. Join our mailing list or follow us on social media @ajglobals to stay updated on upcoming releases and exclusive early access opportunities.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Still Have Questions? -->
+    <div class="mt-16 bg-brandCream p-8 rounded-lg text-center">
+      <h3 class="font-display text-2xl font-bold mb-4">Still have questions?</h3>
+      <p class="text-brandGray mb-6 max-w-2xl mx-auto">Our customer service team is here to help with any additional questions you might have about our products or services.</p>
+      <a href="contact.html" class="inline-block bg-brandBlack text-white px-6 py-3 rounded hover:bg-brandGold hover:text-brandBlack transition font-bold">Contact Us</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#drops" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="index.html#new-arrivals" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="index.html#best-sellers" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="index.html#limited-editions" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#about" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="index.html#materials" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="index.html#sustainability" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Help</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="faq.html" class="text-brandGold font-bold">FAQs</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Info</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const faqItem = button.closest('.faq-item');
+        faqItem.classList.toggle('active');
+        
+        // Close other open FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem && item.classList.contains('active')) {
+            item.classList.remove('active');
+          }
+        });
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

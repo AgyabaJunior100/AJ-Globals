@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Careers</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .career-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .benefit-icon {
+      transition: all 0.3s ease;
+    }
+    .benefit-item:hover .benefit-icon {
+      transform: scale(1.1);
+      color: #d4af37;
+    }
+    .application-form input:focus, 
+    .application-form textarea:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 1px #d4af37;
+    }
+    @media (max-width: 640px) {
+      .mobile-menu {
+        transform: translateX(-100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+        <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+        <a href="index.html#contact" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+          <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="index.html#about" class="hover:text-brandGold transition">About</a>
+          <a href="index.html#contact" class="hover:text-brandGold transition">Contact</a>
+          <a href="careers.html" class="text-brandGold">Careers</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-brandBlack text-brandWhite py-20 md:py-32">
+    <div class="absolute inset-0 bg-gradient-to-r from-brandBlack to-brandBlack/70 z-0"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="md:w-2/3">
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Join Our Team</h1>
+        <p class="text-xl text-brandGray mb-8">We're building the future of premium sportswear. Come help us create jerseys that athletes and fans love.</p>
+        <a href="#open-positions" class="inline-block bg-brandGold text-brandBlack px-8 py-3 font-bold rounded hover:bg-white transition">View Open Positions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture Section -->
+  <section class="py-16 md:py-24 bg-brandCream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Our Culture</h2>
+        <p class="text-brandGray max-w-3xl mx-auto">At AJ Globals, we believe in passion, creativity, and pushing boundaries. Our team is a family of innovators dedicated to excellence in sportswear.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="benefit-item p-8 bg-white rounded-lg shadow-sm text-center">
+          <div class="benefit-icon text-4xl mb-4 text-brandGold">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Innovation</h3>
+          <p class="text-brandGray">We challenge the status quo and push the boundaries of sportswear design and technology.</p>
+        </div>
+        
+        <div class="benefit-item p-8 bg-white rounded-lg shadow-sm text-center">
+          <div class="benefit-icon text-4xl mb-4 text-brandGold">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Collaboration</h3>
+          <p class="text-brandGray">Great ideas come from teamwork. We value every voice and work together to achieve excellence.</p>
+        </div>
+        
+        <div class="benefit-item p-8 bg-white rounded-lg shadow-sm text-center">
+          <div class="benefit-icon text-4xl mb-4 text-brandGold">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Global Impact</h3>
+          <p class="text-brandGray">Our jerseys are worn worldwide. We take pride in creating products that unite fans across the globe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section id="open-positions" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Open Positions</h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Position 1 -->
+        <div class="career-card bg-white p-8 rounded-lg shadow-sm border border-brandCream transition-all duration-300">
+          <h3 class="font-bold text-2xl mb-2">Product Designer</h3>
+          <div class="flex items-center text-brandGray mb-4">
+            <span class="mr-4"><i class="fas fa-map-marker-alt mr-1"></i> Accra, Ghana</span>
+            <span><i class="fas fa-briefcase mr-1"></i> Full-time</span>
+          </div>
+          <p class="text-brandGray mb-6">Lead the design of our next generation of premium jerseys, combining performance with cutting-edge aesthetics.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Fabric Design</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Adobe Creative Suite</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">3D Modeling</span>
+          </div>
+          <a href="#apply-now" class="inline-block border border-brandBlack px-6 py-2 rounded font-medium hover:bg-brandBlack hover:text-white transition">Apply Now</a>
+        </div>
+        
+        <!-- Position 2 -->
+        <div class="career-card bg-white p-8 rounded-lg shadow-sm border border-brandCream transition-all duration-300">
+          <h3 class="font-bold text-2xl mb-2">Marketing Specialist</h3>
+          <div class="flex items-center text-brandGray mb-4">
+            <span class="mr-4"><i class="fas fa-map-marker-alt mr-1"></i> Remote</span>
+            <span><i class="fas fa-briefcase mr-1"></i> Full-time</span>
+          </div>
+          <p class="text-brandGray mb-6">Develop and execute marketing campaigns that connect our brand with athletes and fans worldwide.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Digital Marketing</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Social Media</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Content Creation</span>
+          </div>
+          <a href="#apply-now" class="inline-block border border-brandBlack px-6 py-2 rounded font-medium hover:bg-brandBlack hover:text-white transition">Apply Now</a>
+        </div>
+        
+        <!-- Position 3 -->
+        <div class="career-card bg-white p-8 rounded-lg shadow-sm border border-brandCream transition-all duration-300">
+          <h3 class="font-bold text-2xl mb-2">Supply Chain Manager</h3>
+          <div class="flex items-center text-brandGray mb-4">
+            <span class="mr-4"><i class="fas fa-map-marker-alt mr-1"></i> Accra, Ghana</span>
+            <span><i class="fas fa-briefcase mr-1"></i> Full-time</span>
+          </div>
+          <p class="text-brandGray mb-6">Oversee our global supply chain to ensure ethical sourcing and timely delivery of premium materials.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Logistics</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Vendor Management</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Sustainability</span>
+          </div>
+          <a href="#apply-now" class="inline-block border border-brandBlack px-6 py-2 rounded font-medium hover:bg-brandBlack hover:text-white transition">Apply Now</a>
+        </div>
+        
+        <!-- Position 4 -->
+        <div class="career-card bg-white p-8 rounded-lg shadow-sm border border-brandCream transition-all duration-300">
+          <h3 class="font-bold text-2xl mb-2">Customer Experience Lead</h3>
+          <div class="flex items-center text-brandGray mb-4">
+            <span class="mr-4"><i class="fas fa-map-marker-alt mr-1"></i> Remote</span>
+            <span><i class="fas fa-briefcase mr-1"></i> Full-time</span>
+          </div>
+          <p class="text-brandGray mb-6">Create exceptional experiences for our customers from first contact to post-purchase support.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">CRM</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Customer Support</span>
+            <span class="bg-brandCream px-3 py-1 rounded-full text-sm">Process Improvement</span>
+          </div>
+          <a href="#apply-now" class="inline-block border border-brandBlack px-6 py-2 rounded font-medium hover:bg-brandBlack hover:text-white transition">Apply Now</a>
+        </div>
+      </div>
+      
+      <div class="text-center mt-16">
+        <p class="text-brandGray mb-6">Don't see your dream job? We're always looking for talented individuals.</p>
+        <a href="mailto:careers@ajglobals.com" class="inline-block bg-brandBlack text-white px-8 py-3 font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 md:py-24 bg-brandBlack text-brandWhite">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Why Join AJ Globals?</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center p-6">
+          <div class="text-brandGold text-4xl mb-4">
+            <i class="fas fa-coins"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Competitive Compensation</h3>
+          <p class="text-brandGray">We offer industry-leading salaries and performance bonuses.</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="text-brandGold text-4xl mb-4">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Health & Wellness</h3>
+          <p class="text-brandGray">Comprehensive health insurance and wellness programs.</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="text-brandGold text-4xl mb-4">
+            <i class="fas fa-globe-africa"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Global Team</h3>
+          <p class="text-brandGray">Work with talented colleagues from around the world.</p>
+        </div>
+        
+        <div class="text-center p-6">
+          <div class="text-brandGold text-4xl mb-4">
+            <i class="fas fa-tshirt"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Product Perks</h3>
+          <p class="text-brandGray">Free jerseys and exclusive employee discounts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section id="apply-now" class="py-16 md:py-24 bg-brandCream">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-2 text-center">Apply Now</h2>
+      <p class="text-brandGray text-center mb-12">Fill out the form below and we'll get back to you soon.</p>
+      
+      <form class="application-form bg-white p-8 md:p-12 rounded-lg shadow-sm">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="first-name" class="block text-sm font-medium mb-1">First Name *</label>
+            <input type="text" id="first-name" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+          </div>
+          <div>
+            <label for="last-name" class="block text-sm font-medium mb-1">Last Name *</label>
+            <input type="text" id="last-name" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium mb-1">Email *</label>
+          <input type="email" id="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+        </div>
+        
+        <div class="mb-6">
+          <label for="phone" class="block text-sm font-medium mb-1">Phone</label>
+          <input type="tel" id="phone" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+        </div>
+        
+        <div class="mb-6">
+          <label for="position" class="block text-sm font-medium mb-1">Position Applying For *</label>
+          <select id="position" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+            <option value="">Select a position</option>
+            <option value="Product Designer">Product Designer</option>
+            <option value="Marketing Specialist">Marketing Specialist</option>
+            <option value="Supply Chain Manager">Supply Chain Manager</option>
+            <option value="Customer Experience Lead">Customer Experience Lead</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="mb-6">
+          <label for="resume" class="block text-sm font-medium mb-1">Resume/CV *</label>
+          <div class="flex items-center">
+            <input type="file" id="resume" class="hidden">
+            <label for="resume" class="px-4 py-2 bg-brandCream rounded border cursor-pointer hover:bg-brandDarkCream transition">Choose File</label>
+            <span class="ml-3 text-sm text-brandGray">No file chosen</span>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label for="cover-letter" class="block text-sm font-medium mb-1">Cover Letter</label>
+          <textarea id="cover-letter" rows="5" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold"></textarea>
+        </div>
+        
+        <div class="mb-6">
+          <label for="portfolio" class="block text-sm font-medium mb-1">Portfolio Link (if applicable)</label>
+          <input type="url" id="portfolio" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-brandGold">
+        </div>
+        
+        <button type="submit" class="w-full bg-brandBlack text-white py-3 rounded font-bold hover:bg-brandGold hover:text-brandBlack transition">Submit Application</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+                
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#drops" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="index.html#new-arrivals" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="index.html#best-sellers" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="index.html#limited-editions" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+                
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#about" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="index.html#materials" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="index.html#sustainability" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="text-brandGold">Careers</a></li>
+          </ul>
+        </div>
+                
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="index.html#contact" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="mailto:wholesale@ajglobals.com" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="mailto:press@ajglobals.com" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/ajglobals" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+            
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+                
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+                
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+        
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+        
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+        
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+        
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+        
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+        
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+        
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+        
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+            
+      let itemsHTML = "";
+      let subtotal = 0;
+            
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+                
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+            
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+            
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+            
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+        
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+            
+      cart[itemIndex].qty += change;
+            
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+            
+      saveCart();
+    }
+        
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+        
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+        
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+        
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+        
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+        
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+        
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+        
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+                
+        const existingItem = cart.find(item => item.id === id);
+                
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+                
+        saveCart();
+        showAddedToCart();
+      });
+    });
+        
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+                
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+                
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // File input display
+    document.getElementById('resume').addEventListener('change', function(e) {
+      const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+      this.nextElementSibling.nextElementSibling.textContent = fileName;
+    });
+
+    // Form submission
+    document.querySelector('.application-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your application! We will review your information and get back to you soon.');
+      this.reset();
+      document.querySelector('#resume + label + span').textContent = 'No file chosen';
+    });
+  </script>
+</body>
+</html>

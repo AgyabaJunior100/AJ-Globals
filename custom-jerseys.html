@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Custom Jerseys</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .jersey-preview {
+      transition: all 0.3s ease;
+    }
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+    .design-option:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <!-- Header -->
+  <header class="sticky top-0 bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold flex items-center text-green-800">
+        <i class="fas fa-tshirt mr-2"></i> AJ Globals
+      </a>
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-6">
+          <a href="#" class="hover:text-green-600 transition">Home</a>
+          <a href="#" class="hover:text-green-600 transition">Shop</a>
+          <a href="#" class="text-green-600 font-semibold">Customize</a>
+          <a href="#" class="hover:text-green-600 transition">About</a>
+        </nav>
+        <div class="relative">
+          <button id="cartBtn" class="relative p-2 hover:text-green-600 transition">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-green-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+          </button>
+        </div>
+        <button class="md:hidden text-xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 md:py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 text-green-800">Design Your Custom Jersey</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Create a unique jersey that represents your team's spirit with our easy-to-use designer.</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Jersey Preview Section -->
+      <div class="lg:w-1/2 bg-white rounded-xl shadow-md p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-semibold">Your Design</h2>
+          <div class="flex space-x-2">
+            <button id="frontView" class="px-3 py-1 bg-green-100 text-green-800 rounded-md font-medium">Front</button>
+            <button id="backView" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-md font-medium">Back</button>
+          </div>
+        </div>
+        
+        <div class="relative flex justify-center items-center min-h-[400px] bg-gray-100 rounded-lg overflow-hidden">
+          <!-- Jersey Preview -->
+          <div id="jerseyPreview" class="jersey-preview relative w-64 h-96">
+            <!-- Jersey base (will be updated with JavaScript) -->
+            <div id="jerseyBase" class="absolute inset-0 bg-green-600 rounded-lg"></div>
+            
+            <!-- Jersey design elements -->
+            <div id="jerseyDesign" class="absolute inset-0 flex flex-col items-center justify-center">
+              <!-- Team name (front) -->
+              <div id="teamNameFront" class="text-white font-bold text-xl mt-8 text-center" style="display: block;">YOUR TEAM</div>
+              
+              <!-- Number (front) -->
+              <div id="numberFront" class="text-white font-bold text-6xl mt-4" style="display: block;">00</div>
+              
+              <!-- Team name (back) -->
+              <div id="teamNameBack" class="text-white font-bold text-xl mt-8 text-center" style="display: none;">YOUR TEAM</div>
+              
+              <!-- Number (back) -->
+              <div id="numberBack" class="text-white font-bold text-6xl mt-4" style="display: none;">00</div>
+              
+              <!-- Player name (back) -->
+              <div id="playerNameBack" class="text-white font-medium text-lg mt-2" style="display: none;">PLAYER</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 flex justify-between items-center">
+          <div>
+            <h3 class="font-semibold">Your Custom Jersey</h3>
+            <p class="text-gray-600">Premium quality fabric</p>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-500">Starting at</p>
+            <p class="text-2xl font-bold text-green-800">GHS 299</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Customization Options -->
+      <div class="lg:w-1/2 bg-white rounded-xl shadow-md p-6">
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold mb-4">1. Select Base Color</h2>
+          <div class="grid grid-cols-5 gap-3">
+            <div class="color-option h-12 rounded-md cursor-pointer bg-green-600 border-2 border-green-600" data-color="bg-green-600"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-blue-600 border-2 border-gray-200" data-color="bg-blue-600"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-red-600 border-2 border-gray-200" data-color="bg-red-600"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-yellow-500 border-2 border-gray-200" data-color="bg-yellow-500"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-purple-600 border-2 border-gray-200" data-color="bg-purple-600"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-black border-2 border-gray-200" data-color="bg-black"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-white border-2 border-gray-300" data-color="bg-white"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-gray-800 border-2 border-gray-200" data-color="bg-gray-800"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-pink-500 border-2 border-gray-200" data-color="bg-pink-500"></div>
+            <div class="color-option h-12 rounded-md cursor-pointer bg-orange-500 border-2 border-gray-200" data-color="bg-orange-500"></div>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold mb-4">2. Select Design Style</h2>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="plain">
+              <div class="h-20 bg-green-600 rounded mb-2"></div>
+              <p class="text-sm font-medium">Plain</p>
+            </div>
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="stripes">
+              <div class="h-20 bg-gradient-to-r from-green-600 to-green-800 rounded mb-2"></div>
+              <p class="text-sm font-medium">Stripes</p>
+            </div>
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="sleeves">
+              <div class="h-20 bg-green-600 rounded mb-2 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1/3 h-full bg-white"></div>
+                <div class="absolute top-0 right-0 w-1/3 h-full bg-white"></div>
+              </div>
+              <p class="text-sm font-medium">Contrast Sleeves</p>
+            </div>
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="vneck">
+              <div class="h-20 bg-green-600 rounded mb-2 relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
+              </div>
+              <p class="text-sm font-medium">V-Neck</p>
+            </div>
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="panels">
+              <div class="h-20 bg-green-600 rounded mb-2 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1/2 h-full bg-green-800"></div>
+              </div>
+              <p class="text-sm font-medium">Side Panels</p>
+            </div>
+            <div class="design-option p-3 rounded-md border border-gray-200 cursor-pointer text-center" data-style="gradient">
+              <div class="h-20 bg-gradient-to-b from-green-600 to-green-800 rounded mb-2"></div>
+              <p class="text-sm font-medium">Gradient</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold mb-4">3. Customize Text</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Team Name</label>
+              <input type="text" id="teamNameInput" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" value="YOUR TEAM" maxlength="20">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Player Number</label>
+              <input type="number" id="playerNumberInput" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" value="00" min="0" max="99">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Player Name (Back Only)</label>
+              <input type="text" id="playerNameInput" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" value="PLAYER" maxlength="15">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Text Color</label>
+              <div class="flex space-x-3">
+                <div class="flex items-center">
+                  <input type="radio" id="textWhite" name="textColor" value="text-white" class="h-4 w-4 text-green-600 focus:ring-green-500" checked>
+                  <label for="textWhite" class="ml-2 block text-sm text-gray-700">White</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="textBlack" name="textColor" value="text-black" class="h-4 w-4 text-green-600 focus:ring-green-500">
+                  <label for="textBlack" class="ml-2 block text-sm text-gray-700">Black</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="textGold" name="textColor" value="text-yellow-400" class="h-4 w-4 text-green-600 focus:ring-green-500">
+                  <label for="textGold" class="ml-2 block text-sm text-gray-700">Gold</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold mb-4">4. Select Size</h2>
+          <div class="grid grid-cols-5 gap-2">
+            <button class="size-option py-2 px-1 border border-gray-300 rounded-md text-center font-medium hover:bg-green-100 hover:border-green-500" data-size="S">S</button>
+            <button class="size-option py-2 px-1 border border-gray-300 rounded-md text-center font-medium hover:bg-green-100 hover:border-green-500" data-size="M">M</button>
+            <button class="size-option py-2 px-1 border border-gray-300 rounded-md text-center font-medium hover:bg-green-100 hover:border-green-500 active bg-green-100 border-green-500" data-size="L">L</button>
+            <button class="size-option py-2 px-1 border border-gray-300 rounded-md text-center font-medium hover:bg-green-100 hover:border-green-500" data-size="XL">XL</button>
+            <button class="size-option py-2 px-1 border border-gray-300 rounded-md text-center font-medium hover:bg-green-100 hover:border-green-500" data-size="XXL">XXL</button>
+          </div>
+          <div class="mt-3 text-sm text-gray-500">
+            <a href="#" class="text-green-600 hover:underline">View size guide</a>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button id="addToCartBtn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md transition flex items-center justify-center">
+            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart - GHS 299
+          </button>
+          <button id="saveDesignBtn" class="flex-1 bg-white hover:bg-gray-100 text-green-600 font-bold py-3 px-4 border border-green-600 rounded-md transition flex items-center justify-center">
+            <i class="fas fa-bookmark mr-2"></i> Save Design
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Recommended Products -->
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-8 text-center">Complete Your Team Look</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1521302200778-33500795e128?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Matching Shorts" class="w-full h-48 object-cover">
+            <div class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">Team Shorts</h3>
+            <p class="text-gray-600 text-sm mb-2">Match your custom jersey</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-green-800">GHS 149</span>
+              <button class="text-green-600 hover:text-green-800">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1572635196234-14e3d9193380?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Team Socks" class="w-full h-48 object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">Team Socks</h3>
+            <p class="text-gray-600 text-sm mb-2">Pack of 3 pairs</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-green-800">GHS 79</span>
+              <button class="text-green-600 hover:text-green-800">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Team Cap" class="w-full h-48 object-cover">
+            <div class="absolute top-2 right-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">BESTSELLER</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">Team Cap</h3>
+            <p class="text-gray-600 text-sm mb-2">Adjustable strap</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-green-800">GHS 99</span>
+              <button class="text-green-600 hover:text-green-800">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Team Bag" class="w-full h-48 object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">Team Duffle Bag</h3>
+            <p class="text-gray-600 text-sm mb-2">Large capacity</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-green-800">GHS 199</span>
+              <button class="text-green-600 hover:text-green-800">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="text-xl font-bold mb-4 flex items-center">
+            <i class="fas fa-tshirt mr-2"></i> AJ Globals
+          </h4>
+          <p class="text-gray-400">Premium custom sports apparel for teams and individuals.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Custom Jerseys</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Team Sets</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold mb-4">Help</h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Shipping</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Size Guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2">
+            <li class="text-gray-400">123 Sports Avenue</li>
+            <li class="text-gray-400">Accra, Ghana</li>
+            <li class="text-gray-400">+233 123 456 789</li>
+            <li class="text-gray-400">info@ajglobals.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+          <h3 class="text-xl font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-green-600 transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6 custom-scrollbar">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-gray-400">
+            <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        <div class="p-6 border-t border-gray-200">
+          <div class="flex justify-between mb-4">
+            <span class="font-medium">Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded transition">
+            Proceed to Checkout
+          </button>
+          <p class="text-xs text-gray-500 text-center mt-4">Free shipping on orders over GHS 500</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Initialize cart
+    let cart = JSON.parse(localStorage.getItem("ajCart")) || [];
+    let selectedSize = "L";
+    let currentView = "front";
+    let currentColor = "bg-green-600";
+    let currentStyle = "plain";
+    let textColor = "text-white";
+
+    // Update cart count
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const cartCountEl = document.getElementById("cartCount");
+      cartCountEl.textContent = count;
+      if (count > 0) {
+        cartCountEl.classList.remove("hidden");
+      } else {
+        cartCountEl.classList.add("hidden");
+      }
+    }
+
+    // Update cart modal
+    function updateCartModal() {
+      const cartItemsEl = document.getElementById("cartItems");
+      const cartSubtotalEl = document.getElementById("cartSubtotal");
+      
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-gray-200 last:border-0">
+            <div class="w-20 h-20 rounded-md ${item.color} flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div class="${item.textColor} font-bold text-sm">${item.teamName}</div>
+                <div class="${item.textColor} font-bold text-xl">${item.playerNumber}</div>
+              </div>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-gray-500">Size: ${item.size}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-gray-500 hover:text-red-500 mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+
+    // Update cart item quantity
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+
+    // Remove cart item
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+
+    // Show "Added to cart" notification
+    function showAddedToCart() {
+      const addedToCartEl = document.getElementById("addedToCart");
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+
+    // Initialize cart on page load
+    updateCartCount();
+    updateCartModal();
+
+    // Cart modal toggle
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector("#cartModal > div:first-child").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+
+    // Jersey customization functionality
+    const colorOptions = document.querySelectorAll(".color-option");
+    const designOptions = document.querySelectorAll(".design-option");
+    const sizeOptions = document.querySelectorAll(".size-option");
+    const frontViewBtn = document.getElementById("frontView");
+    const backViewBtn = document.getElementById("backView");
+    const teamNameInput = document.getElementById("teamNameInput");
+    const playerNumberInput = document.getElementById("playerNumberInput");
+    const playerNameInput = document.getElementById("playerNameInput");
+    const textColorRadios = document.querySelectorAll('input[name="textColor"]');
+    const jerseyBase = document.getElementById("jerseyBase");
+    const teamNameFront = document.getElementById("teamNameFront");
+    const teamNameBack = document.getElementById("teamNameBack");
+    const numberFront = document.getElementById("numberFront");
+    const numberBack = document.getElementById("numberBack");
+    const playerNameBack = document.getElementById("playerNameBack");
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    const saveDesignBtn = document.getElementById("saveDesignBtn");
+
+    // Color selection
+    colorOptions.forEach(option => {
+      option.addEventListener("click", function() {
+        // Remove active border from all options
+        colorOptions.forEach(opt => {
+          opt.classList.remove("border-green-600");
+          opt.classList.add("border-gray-200");
+        });
+        
+        // Add active border to selected option
+        this.classList.remove("border-gray-200");
+        this.classList.add("border-green-600");
+        
+        // Update jersey color
+        currentColor = this.dataset.color;
+        updateJerseyAppearance();
+      });
+    });
+
+    // Design style selection
+    designOptions.forEach(option => {
+      option.addEventListener("click", function() {
+        // Remove active background from all options
+        designOptions.forEach(opt => {
+          opt.classList.remove("bg-green-100", "border-green-500");
+        });
+        
+        // Add active background to selected option
+        this.classList.add("bg-green-100", "border-green-500");
+        
+        // Update jersey style
+        currentStyle = this.dataset.style;
+        updateJerseyAppearance();
+      });
+    });
+
+    // Size selection
+    sizeOptions.forEach(option => {
+      option.addEventListener("click", function() {
+        // Remove active background from all options
+        sizeOptions.forEach(opt => {
+          opt.classList.remove("bg-green-100", "border-green-500");
+        });
+        
+        // Add active background to selected option
+        this.classList.add("bg-green-100", "border-green-500");
+        
+        // Update selected size
+        selectedSize = this.dataset.size;
+      });
+    });
+
+    // View toggle (front/back)
+    frontViewBtn.addEventListener("click", function() {
+      currentView = "front";
+      frontViewBtn.classList.remove("bg-gray-100", "text-gray-800");
+      frontViewBtn.classList.add("bg-green-100", "text-green-800");
+      backViewBtn.classList.remove("bg-green-100", "text-green-800");
+      backViewBtn.classList.add("bg-gray-100", "text-gray-800");
+      updateJerseyTextVisibility();
+    });
+
+    backViewBtn.addEventListener("click", function() {
+      currentView = "back";
+      backViewBtn.classList.remove("bg-gray-100", "text-gray-800");
+      backViewBtn.classList.add("bg-green-100", "text-green-800");
+      frontViewBtn.classList.remove("bg-green-100", "text-green-800");
+      frontViewBtn.classList.add("bg-gray-100", "text-gray-800");
+      updateJerseyTextVisibility();
+    });
+
+    // Text input changes
+    teamNameInput.addEventListener("input", function() {
+      teamNameFront.textContent = this.value.toUpperCase();
+      teamNameBack.textContent = this.value.toUpperCase();
+    });
+
+    playerNumberInput.addEventListener("input", function() {
+      const num = this.value.padStart(2, '0').slice(0, 2);
+      numberFront.textContent = num;
+      numberBack.textContent = num;
+    });
+
+    playerNameInput.addEventListener("input", function() {
+      playerNameBack.textContent = this.value.toUpperCase();
+    });
+
+    // Text color selection
+    textColorRadios.forEach(radio => {
+      radio.addEventListener("change", function() {
+        if (this.checked) {
+          textColor = this.value;
+          updateJerseyTextColor();
+        }
+      });
+    });
+
+    // Update jersey appearance based on selected options
+    function updateJerseyAppearance() {
+      // Reset all classes
+      jerseyBase.className = "absolute inset-0 rounded-lg";
+      
+      // Apply base color
+      jerseyBase.classList.add(currentColor);
+      
+      // Apply design style
+      switch(currentStyle) {
+        case "stripes":
+          jerseyBase.classList.add("bg-gradient-to-r", "from-green-600", "to-green-800");
+          break;
+        case "sleeves":
+          // This would need more complex styling for actual sleeves
+          jerseyBase.classList.add("relative", "overflow-hidden");
+          break;
+        case "vneck":
+          // This would need more complex styling for actual v-neck
+          jerseyBase.classList.add("relative", "overflow-hidden");
+          break;
+        case "panels":
+          // This would need more complex styling for actual panels
+          jerseyBase.classList.add("relative", "overflow-hidden");
+          break;
+        case "gradient":
+          jerseyBase.classList.add("bg-gradient-to-b", "from-green-600", "to-green-800");
+          break;
+        // Default is "plain"
+      }
+      
+      updateJerseyTextColor();
+    }
+
+    // Update jersey text color
+    function updateJerseyTextColor() {
+      const textElements = [teamNameFront, teamNameBack, numberFront, numberBack, playerNameBack];
+      textElements.forEach(el => {
+        // Remove all possible text color classes
+        el.classList.remove("text-white", "text-black", "text-yellow-400");
+        // Add selected text color
+        el.classList.add(textColor);
+      });
+    }
+
+    // Update jersey text visibility based on current view
+    function updateJerseyTextVisibility() {
+      if (currentView === "front") {
+        teamNameFront.style.display = "block";
+        numberFront.style.display = "block";
+        teamNameBack.style.display = "none";
+        numberBack.style.display = "none";
+        playerNameBack.style.display = "none";
+      } else {
+        teamNameFront.style.display = "none";
+        numberFront.style.display = "none";
+        teamNameBack.style.display = "block";
+        numberBack.style.display = "block";
+        playerNameBack.style.display = "block";
+      }
+    }
+
+    // Add to cart
+    addToCartBtn.addEventListener("click", function() {
+      const teamName = teamNameInput.value || "YOUR TEAM";
+      const playerNumber = playerNumberInput.value || "00";
+      const playerName = playerNameInput.value || "PLAYER";
+      
+      // Generate unique ID for cart item
+      const id = `custom-jersey-${Date.now()}`;
+      
+      // Add to cart
+      cart.push({
+        id,
+        name: "Custom Jersey",
+        price: 299,
+        color: currentColor,
+        textColor,
+        size: selectedSize,
+        style: currentStyle,
+        teamName,
+        playerNumber,
+        playerName,
+        qty: 1
+      });
+      
+      saveCart();
+      showAddedToCart();
+      
+      // Open cart modal
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+
+    // Save design (placeholder functionality)
+    saveDesignBtn.addEventListener("click", function() {
+      alert("Design saved! You can access it later from your account.");
+    });
+
+    // Initialize jersey
+    updateJerseyAppearance();
+    updateJerseyTextVisibility();
+  </script>
+</body>
+</html>

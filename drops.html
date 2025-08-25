@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drops - AJ Globals | Premium Sports Jerseys</title>
+  <meta name="description" content="Discover the latest limited edition jersey drops from AJ Globals. Premium quality, exclusive designs, and global style.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+    .cart-item:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    .mobile-menu {
+      transform: translateX(-100%);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    .drop-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+      color: #111;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .countdown-timer {
+      background: rgba(17,17,17,0.8);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .drop-hero {
+      background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.7)), 
+                  url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1920&auto=format&fit=crop') center/cover;
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="drops.html" class="text-brandGold border-b border-brandGold pb-1">Drops</a>
+        <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+        <a href="about-us.html" class="hover:text-brandGold transition">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="drops.html" class="text-brandGold">Drops</a>
+          <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+          <a href="about-us.html" class="hover:text-brandGold transition">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="drop-hero text-brandWhite py-20 md:py-32 relative">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <div class="inline-block mb-6 countdown-timer">
+          <i class="fas fa-clock mr-2"></i>
+          <span id="countdown">Next drop in: 2d 14h 23m</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-display font-bold mb-6">Latest Drops</h1>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto">Exclusive, limited edition jerseys from around the world. Once they're gone, they're gone.</p>
+      </div>
+    </section>
+
+    <!-- Featured Drop -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="md:w-1/2 relative">
+          <img src="https://images.unsplash.com/photo-1603808033126-6e57c9b26f9b?q=80&w=800&auto=format&fit=crop" 
+               alt="Featured Drop: Accra Elite" 
+               class="w-full rounded-lg shadow-lg product-image transition duration-300">
+          <span class="drop-badge">Featured Drop</span>
+        </div>
+        <div class="md:w-1/2">
+          <span class="text-brandGold font-semibold uppercase tracking-wider text-sm">New Release</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">Accra Elite 2023</h2>
+          <p class="text-brandGray mb-6">Inspired by the vibrant energy of Ghana's capital, this limited edition football jersey combines traditional kente patterns with modern performance fabrics.</p>
+          
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-brandCream px-4 py-2 rounded-full">
+              <span class="font-semibold">Only <span class="text-brandGold">42</span> left</span>
+            </div>
+            <div class="bg-brandCream px-4 py-2 rounded-full">
+              <span class="font-semibold">Sizes: <span class="text-brandGold">S, M, L, XL</span></span>
+            </div>
+          </div>
+          
+          <div class="mb-8">
+            <span class="text-2xl font-bold">GHS 599</span>
+            <span class="ml-2 text-brandGray line-through">GHS 799</span>
+            <span class="ml-2 text-brandGold font-semibold">25% OFF</span>
+          </div>
+          
+          <div class="flex gap-4">
+            <button class="add-to-cart bg-brandBlack text-white px-8 py-3 rounded font-semibold hover:bg-brandGold hover:text-brandBlack transition"
+                    data-id="accra-elite-2023"
+                    data-name="Accra Elite 2023 Jersey"
+                    data-price="599"
+                    data-image="https://images.unsplash.com/photo-1603808033126-6e57c9b26f9b?q=80&w=800&auto=format&fit=crop">
+              Add to Cart
+            </button>
+            <button class="border border-brandBlack px-8 py-3 rounded font-semibold hover:bg-brandBlack hover:text-white transition">
+              Quick View
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Drops Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="flex justify-between items-center mb-12">
+        <h2 class="text-3xl font-display font-bold">All Drops</h2>
+        <div class="flex gap-4">
+          <select class="bg-brandCream px-4 py-2 rounded border border-brandCream focus:outline-none focus:ring-2 focus:ring-brandGold">
+            <option>Sort by: Newest</option>
+            <option>Sort by: Price (Low to High)</option>
+            <option>Sort by: Price (High to Low)</option>
+            <option>Sort by: Most Popular</option>
+          </select>
+          <button class="bg-brandBlack text-white px-4 py-2 rounded hover:bg-brandGold transition">
+            <i class="fas fa-filter mr-2"></i> Filter
+          </button>
+        </div>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Drop Card 1 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1521302200508-1c9f476b8df3?q=80&w=800&auto=format&fit=crop" 
+                 alt="Lagos Waves Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+            <span class="drop-badge">Limited Edition</span>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg group-hover:text-brandGold transition">Lagos Waves</h4>
+                <p class="text-sm text-brandGray mt-1">Basketball Jersey</p>
+              </div>
+              <span class="font-bold">GHS 549</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">Only 150 pieces available worldwide</p>
+            <button class="add-to-cart w-full mt-4 py-2 bg-brandCream rounded font-medium hover:bg-brandGold hover:text-white transition"
+                    data-id="lagos-waves-2023"
+                    data-name="Lagos Waves Basketball Jersey"
+                    data-price="549"
+                    data-image="https://images.unsplash.com/photo-1521302200508-1c9f476b8df3?q=80&w=800&auto=format&fit=crop">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Drop Card 2 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=800&auto=format&fit=crop" 
+                 alt="Cairo Kings Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+            <span class="drop-badge">New Drop</span>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg group-hover:text-brandGold transition">Cairo Kings</h4>
+                <p class="text-sm text-brandGray mt-1">Football Jersey</p>
+              </div>
+              <span class="font-bold">GHS 699</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">Exclusive design inspired by ancient Egypt</p>
+            <button class="add-to-cart w-full mt-4 py-2 bg-brandCream rounded font-medium hover:bg-brandGold hover:text-white transition"
+                    data-id="cairo-kings-2023"
+                    data-name="Cairo Kings Football Jersey"
+                    data-price="699"
+                    data-image="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=800&auto=format&fit=crop">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Drop Card 3 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=800&auto=format&fit=crop" 
+                 alt="Nairobi Nights Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+            <span class="drop-badge">Sold Out</span>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg text-brandGray">Nairobi Nights</h4>
+                <p class="text-sm text-brandGray mt-1">Rugby Jersey</p>
+              </div>
+              <span class="font-bold text-brandGray">GHS 649</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">This drop has sold out</p>
+            <button class="w-full mt-4 py-2 bg-gray-200 text-gray-500 rounded font-medium cursor-not-allowed" disabled>
+              Notify Me
+            </button>
+          </div>
+        </div>
+        
+        <!-- Drop Card 4 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" 
+                 alt="Dakar Dynamo Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+            <span class="drop-badge">Coming Soon</span>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg group-hover:text-brandGold transition">Dakar Dynamo</h4>
+                <p class="text-sm text-brandGray mt-1">Track Jacket</p>
+              </div>
+              <span class="font-bold">GHS 799</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">Drops on June 15, 2023</p>
+            <button class="w-full mt-4 py-2 bg-brandCream rounded font-medium hover:bg-brandGold hover:text-white transition">
+              Notify Me
+            </button>
+          </div>
+        </div>
+        
+        <!-- Drop Card 5 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1471295253337-2743ce694456?q=80&w=800&auto=format&fit=crop" 
+                 alt="Johannesburg Jumpers Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg group-hover:text-brandGold transition">Johannesburg Jumpers</h4>
+                <p class="text-sm text-brandGray mt-1">Basketball Jersey</p>
+              </div>
+              <span class="font-bold">GHS 599</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">Last few remaining</p>
+            <button class="add-to-cart w-full mt-4 py-2 bg-brandCream rounded font-medium hover:bg-brandGold hover:text-white transition"
+                    data-id="johannesburg-jumpers-2023"
+                    data-name="Johannesburg Jumpers Basketball Jersey"
+                    data-price="599"
+                    data-image="https://images.unsplash.com/photo-1471295253337-2743ce694456?q=80&w=800&auto=format&fit=crop">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Drop Card 6 -->
+        <div class="product-card group border border-brandCream rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1543357480-c60d400e7f89?q=80&w=800&auto=format&fit=crop" 
+                 alt="Cape Town Crew Jersey" 
+                 class="w-full h-80 object-cover product-image transition duration-300">
+            <span class="drop-badge">Fan Favorite</span>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-semibold text-lg group-hover:text-brandGold transition">Cape Town Crew</h4>
+                <p class="text-sm text-brandGray mt-1">Football Jersey</p>
+              </div>
+              <span class="font-bold">GHS 649</span>
+            </div>
+            <p class="text-brandGray text-sm mt-3">Back by popular demand</p>
+            <button class="add-to-cart w-full mt-4 py-2 bg-brandCream rounded font-medium hover:bg-brandGold hover:text-white transition"
+                    data-id="cape-town-crew-2023"
+                    data-name="Cape Town Crew Football Jersey"
+                    data-price="649"
+                    data-image="https://images.unsplash.com/photo-1543357480-c60d400e7f89?q=80&w=800&auto=format&fit=crop">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-16 text-center">
+        <button class="border border-brandBlack px-8 py-3 rounded font-semibold hover:bg-brandBlack hover:text-white transition">
+          Load More Drops
+        </button>
+      </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="bg-brandCream py-16">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-display font-bold mb-4">Never Miss a Drop</h3>
+        <p class="text-brandGray mb-8">Sign up for our newsletter to get early access to new releases, exclusive offers, and behind-the-scenes content.</p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded border border-brandCream focus:outline-none focus:ring-2 focus:ring-brandGold">
+          <button type="submit" class="bg-brandBlack text-white px-6 py-3 rounded font-semibold hover:bg-brandGold hover:text-brandBlack transition">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="catalog.html" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="new-arrivals.html" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="best-sellers.html" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="sale-items.html" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about-us.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="about.html" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Countdown timer for next drop
+    function updateCountdown() {
+      // Set the date we're counting down to (3 days from now)
+      const countDownDate = new Date();
+      countDownDate.setDate(countDownDate.getDate() + 3);
+      
+      // Update the countdown every 1 second
+      const x = setInterval(function() {
+        // Get today's date and time
+        const now = new Date().getTime();
+        
+        // Find the distance between now and the countdown date
+        const distance = countDownDate - now;
+        
+        // Calculate days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        
+        // Display the result
+        document.getElementById("countdown").innerHTML = `Next drop in: ${days}d ${hours}h ${minutes}m`;
+        
+        // If the countdown is finished, clear interval
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "New drop available now!";
+        }
+      }, 1000);
+    }
+    
+    // Initialize countdown
+    updateCountdown();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+        
+        const existingItem = cart.find(item => item.id === id);
+        
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+        
+        saveCart();
+        showAddedToCart();
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

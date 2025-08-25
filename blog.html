@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals Blog - Premium Sports Jersey Insights</title>
+  <meta name="description" content="Discover the latest trends, stories, and insights about premium sports jerseys from AJ Globals.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9',
+            primary: '#1a365d',
+            secondary: '#2c5282'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+    .blog-image {
+      transition: transform 0.3s ease;
+    }
+    .tag {
+      transition: all 0.2s ease;
+    }
+    .tag:hover {
+      background-color: #d4af37;
+      color: white;
+    }
+    .read-time:after {
+      content: "•";
+      margin: 0 8px;
+      color: #d4af37;
+    }
+    .author-image {
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .blog-card:hover .author-image {
+      filter: grayscale(0);
+    }
+    .back-to-top {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="#" class="hover:text-brandGold transition">Shop</a>
+        <a href="#" class="hover:text-brandGold transition">Collections</a>
+        <a href="#" class="text-brandGold transition">Blog</a>
+        <a href="#" class="hover:text-brandGold transition">About</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="#" class="hover:text-brandGold transition">Shop</a>
+          <a href="#" class="hover:text-brandGold transition">Collections</a>
+          <a href="#" class="text-brandGold transition">Blog</a>
+          <a href="#" class="hover:text-brandGold transition">About</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-primary to-secondary text-white py-20 md:py-32">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="font-display text-4xl md:text-6xl font-bold mb-6">The Jersey Journal</h1>
+        <p class="text-xl md:text-2xl text-brandCream mb-8">Insights, stories and trends from the world of premium sports jerseys</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#featured" class="bg-brandGold text-brandBlack px-6 py-3 font-bold hover:bg-white transition">Featured Posts</a>
+          <a href="#all-posts" class="border-2 border-white px-6 py-3 font-bold hover:bg-white hover:text-brandBlack transition">All Articles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Posts -->
+  <section id="featured" class="py-16 bg-brandCream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl font-bold">Featured Stories</h2>
+        <a href="#" class="hidden md:flex items-center gap-2 text-sm uppercase font-semibold tracking-wide hover:text-brandGold transition">
+          View All <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Featured Post 1 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1543357481-d6d8e4f392a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="The Evolution of Football Jerseys" 
+                 class="blog-image w-full h-64 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">History</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Football</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">The Evolution of Football Jerseys</h3>
+            <p class="text-brandGray mb-4">From heavy wool to high-tech performance fabrics, explore how football jerseys have transformed over the decades.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">James Wilson</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">5 min read</span>
+                <span>May 15, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Featured Post 2 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Limited Edition Jerseys" 
+                 class="blog-image w-full h-64 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Collecting</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Investment</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Why Limited Edition Jerseys Are Worth the Investment</h3>
+            <p class="text-brandGray mb-4">Discover how rare jerseys can appreciate in value and become prized possessions for collectors worldwide.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Sarah Johnson</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">7 min read</span>
+                <span>June 2, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Featured Post 3 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Basketball Jersey Trends" 
+                 class="blog-image w-full h-64 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Basketball</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Trends</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Basketball Jersey Trends Taking Over 2023</h3>
+            <p class="text-brandGray mb-4">From retro revivals to bold new designs, see what's dominating the courts this season in basketball fashion.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Michael Chen</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">4 min read</span>
+                <span>June 18, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 md:hidden text-center">
+        <a href="#" class="inline-flex items-center gap-2 text-sm uppercase font-semibold tracking-wide hover:text-brandGold transition">
+          View All Featured <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Posts -->
+  <section id="all-posts" class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 md:mb-0">Latest Articles</h2>
+        <div class="flex gap-4">
+          <div class="relative">
+            <select class="appearance-none bg-brandCream border-0 pl-4 pr-8 py-2 rounded-full text-sm focus:ring-2 focus:ring-brandGold">
+              <option>All Categories</option>
+              <option>Football</option>
+              <option>Basketball</option>
+              <option>Baseball</option>
+              <option>History</option>
+              <option>Collecting</option>
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <i class="fas fa-chevron-down text-xs"></i>
+            </div>
+          </div>
+          <div class="relative">
+            <select class="appearance-none bg-brandCream border-0 pl-4 pr-8 py-2 rounded-full text-sm focus:ring-2 focus:ring-brandGold">
+              <option>Newest First</option>
+              <option>Oldest First</option>
+              <option>Most Popular</option>
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <i class="fas fa-chevron-down text-xs"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Post 1 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Iconic Baseball Jerseys" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Baseball</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">History</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">The 10 Most Iconic Baseball Jerseys of All Time</h3>
+            <p class="text-brandGray mb-4">From the Yankees pinstripes to the colorful Expos design, these are the jerseys that defined baseball fashion.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Emily Davis</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">8 min read</span>
+                <span>July 5, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post 2 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Sustainable Jersey Materials" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Sustainability</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Innovation</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">The Future of Sustainable Jersey Materials</h3>
+            <p class="text-brandGray mb-4">How recycled plastics, bamboo fibers and other eco-friendly materials are revolutionizing sports apparel.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Robert Green</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">6 min read</span>
+                <span>July 12, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post 3 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="NBA Jersey Sponsorships" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Basketball</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Business</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">The Business Behind NBA Jersey Sponsorships</h3>
+            <p class="text-brandGray mb-4">A deep dive into how jersey sponsorships became a multi-million dollar revenue stream for NBA teams.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Lisa Wong</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">9 min read</span>
+                <span>July 19, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post 4 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1471295253337-3ceaaedca402?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Soccer Jersey Culture" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Football</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Culture</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">How Soccer Jerseys Became Global Fashion Statements</h3>
+            <p class="text-brandGray mb-4">From the streets of Rio to the runways of Paris, soccer jerseys have transcended sports to become cultural icons.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Carlos Mendez</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">7 min read</span>
+                <span>July 26, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post 5 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Custom Jersey Design" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Design</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Custom</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Behind the Scenes: Designing a Custom Jersey</h3>
+            <p class="text-brandGray mb-4">Follow our design team through the entire process of creating a one-of-a-kind custom jersey from concept to final product.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Olivia Parker</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">10 min read</span>
+                <span>August 2, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Post 6 -->
+        <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                 alt="Caring for Vintage Jerseys" 
+                 class="blog-image w-full h-48 object-cover">
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Care</span>
+              <span class="tag bg-brandCream text-brandBlack px-3 py-1 text-xs font-semibold rounded-full">Vintage</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Expert Tips for Caring for Your Vintage Jerseys</h3>
+            <p class="text-brandGray mb-4">Learn professional techniques to preserve your valuable vintage jerseys and keep them looking like new for decades.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                     alt="Author" 
+                     class="author-image w-8 h-8 rounded-full object-cover">
+                <span class="text-sm">Thomas Wright</span>
+              </div>
+              <div class="text-sm text-brandGray">
+                <span class="read-time">5 min read</span>
+                <span>August 9, 2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex justify-center">
+        <button class="bg-brandBlack text-white px-8 py-3 font-bold hover:bg-brandGold hover:text-brandBlack transition">
+          Load More Articles
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Stay Updated</h2>
+      <p class="text-xl text-brandCream mb-8">Subscribe to our newsletter for the latest jersey news, exclusive drops, and special offers.</p>
+      <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full text-brandBlack focus:outline-none focus:ring-2 focus:ring-brandGold">
+        <button type="submit" class="bg-brandGold text-brandBlack px-6 py-3 font-bold rounded-full hover:bg-white transition">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top fixed bottom-6 right-6 bg-brandBlack text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-brandGold transition">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="#" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="#" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="#" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Back to top button
+    const backToTopBtn = document.getElementById("backToTop");
+    
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add("visible");
+      } else {
+        backToTopBtn.classList.remove("visible");
+      }
+    });
+    
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+    
+    // Fetch products from backend
+// Replace with your deployed backend URL if not running locally
+const API_BASE = 'http://localhost:5000';
+
+fetch(`${API_BASE}/products`)
+  .then(res => res.json())
+  .then(products => {
+    // Render products in your HTML
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = products.map(product => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description || ''}</p>
+        <span>${product.price}</span>
+      </div>
+    `).join('');
+  });
+  </script>
+</body>
+</html>

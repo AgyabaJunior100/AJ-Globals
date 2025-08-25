@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Premium Sports Jerseys</title>
+  <meta name="description" content="AJ Globals delivers premium sports jerseys with global style, limited drops, and unmatched quality.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.85) 100%), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80') center/cover;
+    }
+    .founder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .investor-logo:hover {
+      transform: scale(1.05);
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 40px;
+      height: calc(100% - 40px);
+      width: 2px;
+      background: #d4af37;
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+    .cart-item:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    @media (max-width: 640px) {
+      .mobile-menu {
+        transform: translateX(-100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+        <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="about.html" class="hover:text-brandGold transition font-bold text-brandGold">About</a>
+        <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="index.html#drops" class="hover:text-brandGold transition">Drops</a>
+          <a href="index.html#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="about.html" class="hover:text-brandGold transition font-bold text-brandGold">About</a>
+          <a href="contact.html" class="hover:text-brandGold transition">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-brandWhite py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h1 class="font-display text-4xl md:text-6xl font-bold mb-6">Our Story</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">From dorm room sketches to premium jerseys worn worldwide</p>
+    </div>
+  </section>
+
+  <!-- Founder Story -->
+  <section class="py-16 md:py-24 bg-brandCream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="md:w-1/2">
+          <div class="bg-white p-8 rounded-lg shadow-lg founder-card transition duration-300">
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-brandGold">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Founder" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-display text-2xl font-bold text-center mb-2">AJ Mensah</h3>
+            <p class="text-brandGray text-center mb-4">Founder & Creative Director</p>
+            <p class="text-center">"What began as a university side hustle is now a brand that connects athletes and fans across continents."</p>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">The Solo Grind</h2>
+          <p class="text-lg mb-6">In 2018, while studying at university, I started designing custom jerseys for campus teams. With just a laptop, a vision, and relentless hustle, I turned my passion into a business.</p>
+          <p class="text-lg mb-6">Late nights turned into early mornings as I balanced classes with fulfilling orders. The demand grew beyond campus, and soon I was shipping jerseys nationwide.</p>
+          <p class="text-lg">In 2023, three visionary investors saw the potential in AJ Globals and helped transform it from a one-man operation into the premium brand it is today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Our Journey</h2>
+      
+      <div class="relative max-w-3xl mx-auto">
+        <!-- Timeline Item 1 -->
+        <div class="relative timeline-item pl-16 pb-12">
+          <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-brandGold flex items-center justify-center text-white font-bold text-xl">1</div>
+          <h3 class="font-display text-xl font-bold mb-2">2018 - The Beginning</h3>
+          <p class="text-brandGray">Started designing custom jerseys for university teams while studying full-time. First 50 orders fulfilled from a dorm room.</p>
+        </div>
+        
+        <!-- Timeline Item 2 -->
+        <div class="relative timeline-item pl-16 pb-12">
+          <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-brandGold flex items-center justify-center text-white font-bold text-xl">2</div>
+          <h3 class="font-display text-xl font-bold mb-2">2020 - First Website</h3>
+          <p class="text-brandGray">Launched our first e-commerce site, expanding beyond campus to serve customers nationwide.</p>
+        </div>
+        
+        <!-- Timeline Item 3 -->
+        <div class="relative timeline-item pl-16 pb-12">
+          <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-brandGold flex items-center justify-center text-white font-bold text-xl">3</div>
+          <h3 class="font-display text-xl font-bold mb-2">2022 - Premium Materials</h3>
+          <p class="text-brandGray">Partnered with international manufacturers to source premium fabrics and introduce limited edition drops.</p>
+        </div>
+        
+        <!-- Timeline Item 4 -->
+        <div class="relative timeline-item pl-16 pb-12">
+          <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-brandGold flex items-center justify-center text-white font-bold text-xl">4</div>
+          <h3 class="font-display text-xl font-bold mb-2">2023 - Investor Partnership</h3>
+          <p class="text-brandGray">Secured investments from three strategic partners to scale operations and expand our global reach.</p>
+        </div>
+        
+        <!-- Timeline Item 5 -->
+        <div class="relative timeline-item pl-16">
+          <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-brandGold flex items-center justify-center text-white font-bold text-xl">5</div>
+          <h3 class="font-display text-xl font-bold mb-2">Today - Global Presence</h3>
+          <p class="text-brandGray">Shipping premium jerseys to over 15 countries with a growing community of athletes and fans.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investors Section -->
+  <section class="py-16 md:py-24 bg-brandBlack text-brandWhite">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center">Our Strategic Partners</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Investor 1 -->
+        <div class="bg-brandBlack/80 p-8 rounded-lg border border-brandGold/20 text-center">
+          <div class="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center p-4 investor-logo transition duration-300">
+            <span class="text-2xl font-bold text-brandBlack">BLAQ</span>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-2">Blaq Company Ltd</h3>
+          <p class="text-brandGray mb-4">20% Stake</p>
+          <p class="text-sm">Bringing sharp business insight and strategic guidance to scale our operations.</p>
+        </div>
+        
+        <!-- Investor 2 -->
+        <div class="bg-brandBlack/80 p-8 rounded-lg border border-brandGold/20 text-center">
+          <div class="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center p-4 investor-logo transition duration-300">
+            <span class="text-2xl font-bold text-brandBlack">BSS</span>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-2">Blue Scavengers Security</h3>
+          <p class="text-brandGray mb-4">20% Stake</p>
+          <p class="text-sm">Ensuring trust, integrity, and operational security across all our transactions.</p>
+        </div>
+        
+        <!-- Investor 3 -->
+        <div class="bg-brandBlack/80 p-8 rounded-lg border border-brandGold/20 text-center">
+          <div class="w-32 h-32 mx-auto mb-6 bg-white rounded-full flex items-center justify-center p-4 investor-logo transition duration-300">
+            <span class="text-2xl font-bold text-brandBlack">FF</span>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-2">FortiFind Company</h3>
+          <p class="text-brandGray mb-4">30% Stake</p>
+          <p class="text-sm">Providing bold ideas and steady growth capital to fuel our expansion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 md:py-24 bg-brandGold text-brandBlack">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Our Mission</h2>
+      <p class="text-xl md:text-2xl max-w-4xl mx-auto mb-12">To create premium jerseys that celebrate athletic excellence while maintaining the highest standards of quality, sustainability, and cultural relevance.</p>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="p-6">
+          <div class="w-16 h-16 mx-auto mb-4 bg-brandBlack text-brandGold rounded-full flex items-center justify-center">
+            <i class="fas fa-medal text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Quality First</h3>
+          <p>Premium fabrics and craftsmanship for jerseys that last</p>
+        </div>
+        
+        <div class="p-6">
+          <div class="w-16 h-16 mx-auto mb-4 bg-brandBlack text-brandGold rounded-full flex items-center justify-center">
+            <i class="fas fa-globe text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Global Style</h3>
+          <p>Designs inspired by athletic culture worldwide</p>
+        </div>
+        
+        <div class="p-6">
+          <div class="w-16 h-16 mx-auto mb-4 bg-brandBlack text-brandGold rounded-full flex items-center justify-center">
+            <i class="fas fa-leaf text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Sustainable Future</h3>
+          <p>Ethical production and eco-friendly materials</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team CTA -->
+  <section class="py-16 md:py-24 bg-brandWhite">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Join Our Team</h2>
+      <p class="text-xl max-w-3xl mx-auto mb-8">We're always looking for passionate individuals to join our growing team. Check out our current openings.</p>
+      <a href="careers.html" class="inline-block px-8 py-3 bg-brandBlack text-brandWhite font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">View Careers</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="catalog.html" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="new-arrivals.html" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="best-sellers.html" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="sale-items.html" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="about.html#materials" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="about.html#sustainability" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="contact.html" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+        
+        const existingItem = cart.find(item => item.id === id);
+        
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+        
+        saveCart();
+        showAddedToCart();
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

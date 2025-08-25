@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Settings - JerseyStory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <header class="bg-brandBlack text-brandWhite shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center"><i class="fas fa-cog mr-2"></i> Admin Settings</h1>
+      <nav class="flex gap-6 text-sm font-semibold">
+        <a href="admin-dashboard.html" class="hover:text-brandGold transition">Dashboard</a>
+        <a href="index.html" class="hover:text-brandGold transition">Home</a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-2xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold mb-8">Settings</h2>
+    <form class="bg-white rounded-lg shadow p-8">
+      <div class="mb-6">
+        <label for="siteName" class="block font-semibold mb-2">Site Name</label>
+        <input type="text" id="siteName" name="siteName" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-brandGold" value="JerseyStory">
+      </div>
+      <div class="mb-6">
+        <label for="adminEmail" class="block font-semibold mb-2">Admin Email</label>
+        <input type="email" id="adminEmail" name="adminEmail" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-brandGold" value="admin@jerseystory.com">
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block font-semibold mb-2">Change Password</label>
+        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-brandGold" placeholder="New Password">
+      </div>
+      <button type="submit" class="bg-brandGold text-white font-bold px-6 py-2 rounded hover:bg-yellow-600 transition">Save Changes</button>
+    </form>
+  </main>
+  <footer class="bg-brandBlack text-brandWhite py-8 text-center mt-12">
+    <p>&copy; <span id="year"></span> JerseyStory Admin. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

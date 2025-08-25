@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Premium Sports Jerseys</title>
+  <meta name="description" content="AJ Globals delivers premium sports jerseys with global style, limited drops, and unmatched quality.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e40af',
+            secondary: '#1e3a8a',
+            accent: '#d97706',
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+    .cart-item:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    @media (max-width: 640px) {
+      .mobile-menu {
+        transform: translateX(-100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.9) 0%, rgba(30, 58, 138, 0.9) 100%);
+    }
+    .jersey-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-brandWhite text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="#featured" class="hover:text-brandGold transition">Featured</a>
+        <a href="#collections" class="hover:text-brandGold transition">Collections</a>
+        <a href="#about" class="hover:text-brandGold transition">About</a>
+        <a href="#contact" class="hover:text-brandGold transition">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="#featured" class="hover:text-brandGold transition">Featured</a>
+          <a href="#collections" class="hover:text-brandGold transition">Collections</a>
+          <a href="#about" class="hover:text-brandGold transition">About</a>
+          <a href="#contact" class="hover:text-brandGold transition">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white py-20 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="md:flex items-center gap-12">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Premium Sports Jerseys</h1>
+          <p class="text-lg mb-8 opacity-90">Authentic, limited edition jerseys from the world's top teams and leagues.</p>
+          <div class="flex gap-4">
+            <a href="#featured" class="bg-white text-primary px-6 py-3 rounded font-bold hover:bg-opacity-90 transition">Shop Now</a>
+            <a href="#collections" class="border border-white text-white px-6 py-3 rounded font-bold hover:bg-white hover:bg-opacity-10 transition">Collections</a>
+          </div>
+        </div>
+        <div class="md:w-1/2 relative">
+          <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=800&q=80" alt="Premium Jersey" class="rounded-lg shadow-2xl w-full">
+          <div class="absolute -bottom-6 -right-6 bg-brandGold text-brandBlack px-4 py-2 rounded shadow-lg font-bold hidden md:block">
+            Limited Edition
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section id="featured" class="py-16 bg-brandCream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Featured Jerseys</h2>
+        <p class="text-brandGray max-w-2xl mx-auto">Our curated selection of premium jerseys from top leagues around the world.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=800&q=80" alt="Manchester United Home Jersey" class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="jersey-badge">NEW</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg">Manchester United 23/24 Home</h3>
+              <span class="text-primary font-bold">$89.99</span>
+            </div>
+            <p class="text-brandGray text-sm mb-4">Official Premier League home jersey with player fit technology.</p>
+            <button class="add-to-cart w-full bg-primary text-white py-2 rounded font-medium hover:bg-secondary transition" 
+              data-id="mu-home-23" 
+              data-name="Manchester United 23/24 Home" 
+              data-price="89.99" 
+              data-image="https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=800&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1534809027769-b017ea5c6fbc?auto=format&fit=crop&w=800&q=80" alt="Lakers Icon Edition" class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="jersey-badge">LIMITED</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg">L.A. Lakers Icon Edition</h3>
+              <span class="text-primary font-bold">$109.99</span>
+            </div>
+            <p class="text-brandGray text-sm mb-4">Authentic NBA jersey with stitched team and player details.</p>
+            <button class="add-to-cart w-full bg-primary text-white py-2 rounded font-medium hover:bg-secondary transition" 
+              data-id="lal-icon-23" 
+              data-name="L.A. Lakers Icon Edition" 
+              data-price="109.99" 
+              data-image="https://images.unsplash.com/photo-1534809027769-b017ea5c6fbc?auto=format&fit=crop&w=800&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1525896650794-60ad4ec40d0d?auto=format&fit=crop&w=800&q=80" alt="Barcelona Away Jersey" class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="jersey-badge">SALE</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg">Barcelona 23/24 Away</h3>
+              <span class="text-primary font-bold">$79.99 <span class="text-brandGray line-through text-sm">$99.99</span></span>
+            </div>
+            <p class="text-brandGray text-sm mb-4">Official La Liga away jersey with moisture-wicking fabric.</p>
+            <button class="add-to-cart w-full bg-primary text-white py-2 rounded font-medium hover:bg-secondary transition" 
+              data-id="barca-away-23" 
+              data-name="Barcelona 23/24 Away" 
+              data-price="79.99" 
+              data-image="https://images.unsplash.com/photo-1525896650794-60ad4ec40d0d?auto=format&fit=crop&w=800&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#collections" class="inline-block border border-primary text-primary px-6 py-3 rounded font-bold hover:bg-primary hover:text-white transition">View All Collections</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections -->
+  <section id="collections" class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Our Collections</h2>
+        <p class="text-brandGray max-w-2xl mx-auto">Explore jerseys from your favorite leagues and teams.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Collection 1 -->
+        <a href="#" class="group relative overflow-hidden rounded-lg shadow-md h-64">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80" alt="Premier League" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold group-hover:text-brandGold transition">Premier League</h3>
+          </div>
+        </a>
+
+        <!-- Collection 2 -->
+        <a href="#" class="group relative overflow-hidden rounded-lg shadow-md h-64">
+          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" alt="NBA" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold group-hover:text-brandGold transition">NBA</h3>
+          </div>
+        </a>
+
+        <!-- Collection 3 -->
+        <a href="#" class="group relative overflow-hidden rounded-lg shadow-md h-64">
+          <img src="https://images.unsplash.com/photo-1551958219-acbc608c9097?auto=format&fit=crop&w=800&q=80" alt="La Liga" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold group-hover:text-brandGold transition">La Liga</h3>
+          </div>
+        </a>
+
+        <!-- Collection 4 -->
+        <a href="#" class="group relative overflow-hidden rounded-lg shadow-md h-64">
+          <img src="https://images.unsplash.com/photo-1579952363872-2898b6f8f0d2?auto=format&fit=crop&w=800&q=80" alt="NFL" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-bold group-hover:text-brandGold transition">NFL</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-brandDarkCream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="md:flex items-center gap-12">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80" alt="About AJ Globals" class="rounded-lg shadow-xl w-full">
+        </div>
+        <div class="md:w-1/2">
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
+          <p class="text-brandGray mb-6">Founded in 2015, AJ Globals began with a simple mission: to bring authentic, premium sports jerseys to fans worldwide. What started as a small boutique has grown into a global destination for jersey enthusiasts.</p>
+          <p class="text-brandGray mb-8">We work directly with teams, leagues, and manufacturers to ensure every jersey meets our high standards for quality and authenticity. Our limited edition drops sell out quickly, so be sure to subscribe for updates.</p>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full bg-brandGold text-white flex items-center justify-center">
+                <i class="fas fa-check"></i>
+              </div>
+              <span class="font-medium">Authentic</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full bg-brandGold text-white flex items-center justify-center">
+                <i class="fas fa-check"></i>
+              </div>
+              <span class="font-medium">Limited Editions</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full bg-brandGold text-white flex items-center justify-center">
+                <i class="fas fa-check"></i>
+              </div>
+              <span class="font-medium">Worldwide Shipping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
+        <p class="text-brandGray max-w-2xl mx-auto">Don't just take our word for it - hear from jersey collectors worldwide.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-brandCream p-8 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <div class="text-brandGold text-2xl mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="text-sm font-medium">5/5</span>
+          </div>
+          <p class="text-brandGray mb-6">"The quality of the jerseys from AJ Globals is unmatched. I've been collecting for years and these are by far the best."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">Michael T.</h4>
+              <p class="text-brandGray text-sm">Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-brandCream p-8 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <div class="text-brandGold text-2xl mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="text-sm font-medium">5/5</span>
+          </div>
+          <p class="text-brandGray mb-6">"Fast shipping and excellent customer service. My limited edition Lakers jersey arrived in perfect condition."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">Sarah J.</h4>
+              <p class="text-brandGray text-sm">Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-brandCream p-8 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <div class="text-brandGold text-2xl mr-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="text-sm font-medium">4.5/5</span>
+          </div>
+          <p class="text-brandGray mb-6">"I was hesitant about ordering online, but the detailed product photos and descriptions made me confident in my purchase."</p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David K." class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">David K.</h4>
+              <p class="text-brandGray text-sm">Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Join Our Newsletter</h2>
+      <p class="mb-8 opacity-90 max-w-2xl mx-auto">Subscribe to get exclusive access to limited drops, special offers, and jersey release updates.</p>
+      <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded text-brandBlack focus:outline-none focus:ring-2 focus:ring-brandGold">
+        <button type="submit" class="bg-brandGold text-brandBlack px-6 py-3 rounded font-bold hover:bg-opacity-90 transition">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="md:flex gap-12">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Contact Us</h2>
+          <p class="text-brandGray mb-8">Have questions about our products or need help with an order? Our team is here to help.</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brandCream text-primary flex items-center justify-center mt-1">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Our Store</h4>
+                <p class="text-brandGray">123 Jersey Avenue<br>Sports City, SC 90210</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brandCream text-primary flex items-center justify-center mt-1">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Email Us</h4>
+                <p class="text-brandGray">support@ajglobals.com<br>sales@ajglobals.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brandCream text-primary flex items-center justify-center mt-1">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Call Us</h4>
+                <p class="text-brandGray">+1 (555) 123-4567<br>Mon-Fri: 9am-6pm EST</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:w-1/2">
+          <form class="bg-brandCream p-8 rounded-lg shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                <input type="text" id="name" class="w-full px-4 py-2 rounded border border-brandGray focus:outline-none focus:ring-2 focus:ring-primary">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 rounded border border-brandGray focus:outline-none focus:ring-2 focus:ring-primary">
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+              <input type="text" id="subject" class="w-full px-4 py-2 rounded border border-brandGray focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium mb-1">Message</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-2 rounded border border-brandGray focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-3 rounded font-bold hover:bg-secondary transition">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#featured" class="hover:text-brandGold transition">Featured</a></li>
+            <li><a href="#collections" class="hover:text-brandGold transition">Collections</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Limited Editions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#about" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-4">Contact</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="#contact" class="hover:text-brandGold transition">Customer Service</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Wholesale Inquiries</a></li>
+            <li><a href="#" class="hover:text-brandGold transition">Press</a></li>
+            <li>
+              <div class="flex gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="#" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="#" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="#" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">$0.00</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over $100</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "$0.00";
+        return;
+      }
+
+      let itemsHTML = "";
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">$${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">$${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+
+      cart[itemIndex].qty += change;
+
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+
+      saveCart();
+    }
+
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+
+        const existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+
+        saveCart();
+        showAddedToCart();
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    // Replace with your deployed backend URL if not running locally
+const API_BASE = 'http://localhost:5000';
+
+fetch(`${API_BASE}/products`)
+  .then(res => res.json())
+  .then(products => {
+    // Render products in your HTML
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = products.map(product => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description || ''}</p>
+        <span>${product.price}</span>
+      </div>
+    `).join('');
+  });
+  </script>
+</body>
+</html>

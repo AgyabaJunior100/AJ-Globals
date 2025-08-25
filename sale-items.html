@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Globals - Sale Items</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#ffffff',
+            brandBlack: '#111111',
+            brandCream: '#fdf6ec',
+            brandGold: '#d4af37',
+            brandGray: '#6b7280',
+            brandDarkCream: '#f5e9d9',
+            primary: '#1a365d',
+            secondary: '#2c5282'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .product-card:hover .product-image {
+      transform: scale(1.03);
+    }
+    .cart-item:hover {
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+    .cart-overlay {
+      backdrop-filter: blur(5px);
+    }
+    .sale-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+    @media (max-width: 640px) {
+      .mobile-menu {
+        transform: translateX(-100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brandCream text-brandBlack font-body antialiased selection:bg-brandGold selection:text-brandBlack">
+  <!-- Header -->
+  <header class="sticky top-0 bg-brandWhite/95 z-50 shadow-sm border-b border-brandCream/80 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="font-display text-2xl font-bold tracking-tight hover:text-brandGold transition">AJ Globals</a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex gap-8 text-sm uppercase font-semibold tracking-wide">
+        <a href="drops.html" class="hover:text-brandGold transition">Drops</a>
+        <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+        <a href="sale-items.html" class="text-brandGold transition">Sale</a>
+        <a href="about.html" class="hover:text-brandGold transition">About</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cartBtn" class="relative p-2 hover:text-brandGold transition">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount" class="absolute -top-1 -right-2 bg-brandGold text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-brandWhite shadow-lg z-50 transition-transform duration-300 ease-in-out md:hidden">
+      <div class="p-6">
+        <button id="closeMenuBtn" class="absolute top-4 right-4 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="font-display text-xl font-bold mb-8">AJ Globals</h2>
+        <nav class="flex flex-col gap-6 text-sm uppercase font-semibold tracking-wide">
+          <a href="drops.html" class="hover:text-brandGold transition">Drops</a>
+          <a href="collections.html" class="hover:text-brandGold transition">Collections</a>
+          <a href="sale-items.html" class="text-brandGold transition">Sale</a>
+          <a href="about.html" class="hover:text-brandGold transition">About</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Sale Banner -->
+    <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-8 mb-12 relative overflow-hidden">
+      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="relative z-10 max-w-2xl">
+        <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Limited Time Sale</h1>
+        <p class="text-xl mb-6">Premium jerseys at exclusive prices. Limited stock available.</p>
+        <div class="flex items-center gap-4">
+          <div class="bg-white/20 rounded-lg px-4 py-2 backdrop-blur-sm">
+            <div class="text-sm">Ends in</div>
+            <div class="font-bold text-xl" id="countdown">48:00:00</div>
+          </div>
+          <a href="#sale-items" class="bg-brandGold hover:bg-white text-brandBlack font-bold px-6 py-3 rounded-lg transition">Shop Now</a>
+        </div>
+      </div>
+      <div class="absolute -right-20 -bottom-20 w-64 h-64 rounded-full bg-white/10"></div>
+      <div class="absolute -right-10 -bottom-40 w-80 h-80 rounded-full bg-white/5"></div>
+    </div>
+
+    <!-- Sale Items Section -->
+    <section id="sale-items" class="mb-20">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-display font-bold">Sale Items</h2>
+        <div class="relative">
+          <select class="bg-white border border-brandGray/20 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-brandGold">
+            <option>Sort by</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Discount %</option>
+            <option>Newest</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-3 top-3 text-xs text-brandGray"></i>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Sale Item 1 -->
+        <div class="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                 alt="Limited Edition Football Jersey" 
+                 class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="sale-badge bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">SALE</div>
+            <div class="discount-badge bg-brandGold text-brandBlack font-bold px-2 py-1 rounded-lg">-30%</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold mb-1">Champions League Jersey</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-brandGold text-sm font-bold"><i class="fas fa-star"></i> 4.9</span>
+              <span class="text-brandGray text-sm">(24 reviews)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brandBlack font-bold">GHS 450</span>
+              <span class="text-brandGray text-sm line-through">GHS 650</span>
+            </div>
+            <button class="add-to-cart w-full mt-4 bg-brandBlack hover:bg-brandGold text-white font-bold py-2 px-4 rounded transition"
+                    data-id="sale1"
+                    data-name="Champions League Jersey"
+                    data-price="450"
+                    data-image="https://images.unsplash.com/photo-1521369909029-2afed882baee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Sale Item 2 -->
+        <div class="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1543357480-c60d400e7ef6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                 alt="Basketball Jersey" 
+                 class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="sale-badge bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">SALE</div>
+            <div class="discount-badge bg-brandGold text-brandBlack font-bold px-2 py-1 rounded-lg">-25%</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold mb-1">NBA All-Star Jersey</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-brandGold text-sm font-bold"><i class="fas fa-star"></i> 4.7</span>
+              <span class="text-brandGray text-sm">(18 reviews)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brandBlack font-bold">GHS 520</span>
+              <span class="text-brandGray text-sm line-through">GHS 700</span>
+            </div>
+            <button class="add-to-cart w-full mt-4 bg-brandBlack hover:bg-brandGold text-white font-bold py-2 px-4 rounded transition"
+                    data-id="sale2"
+                    data-name="NBA All-Star Jersey"
+                    data-price="520"
+                    data-image="https://images.unsplash.com/photo-1543357480-c60d400e7ef6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Sale Item 3 -->
+        <div class="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                 alt="National Team Jersey" 
+                 class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="sale-badge bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">SALE</div>
+            <div class="discount-badge bg-brandGold text-brandBlack font-bold px-2 py-1 rounded-lg">-40%</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold mb-1">World Cup Jersey</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-brandGold text-sm font-bold"><i class="fas fa-star"></i> 4.8</span>
+              <span class="text-brandGray text-sm">(32 reviews)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brandBlack font-bold">GHS 390</span>
+              <span class="text-brandGray text-sm line-through">GHS 650</span>
+            </div>
+            <button class="add-to-cart w-full mt-4 bg-brandBlack hover:bg-brandGold text-white font-bold py-2 px-4 rounded transition"
+                    data-id="sale3"
+                    data-name="World Cup Jersey"
+                    data-price="390"
+                    data-image="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Sale Item 4 -->
+        <div class="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                 alt="Retro Football Jersey" 
+                 class="product-image w-full h-64 object-cover transition duration-300">
+            <div class="sale-badge bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">SALE</div>
+            <div class="discount-badge bg-brandGold text-brandBlack font-bold px-2 py-1 rounded-lg">-35%</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold mb-1">Retro Football Jersey</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-brandGold text-sm font-bold"><i class="fas fa-star"></i> 4.9</span>
+              <span class="text-brandGray text-sm">(28 reviews)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brandBlack font-bold">GHS 420</span>
+              <span class="text-brandGray text-sm line-through">GHS 650</span>
+            </div>
+            <button class="add-to-cart w-full mt-4 bg-brandBlack hover:bg-brandGold text-white font-bold py-2 px-4 rounded transition"
+                    data-id="sale4"
+                    data-name="Retro Football Jersey"
+                    data-price="420"
+                    data-image="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- More Items Button -->
+      <div class="text-center mt-12">
+        <button class="bg-white border border-brandBlack text-brandBlack hover:bg-brandBlack hover:text-white font-bold py-3 px-8 rounded-full transition duration-300">
+          Load More
+        </button>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-8 mb-12">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl font-display font-bold mb-4">Get Exclusive Deals</h2>
+        <p class="mb-6">Subscribe to our newsletter and be the first to know about new drops and special offers.</p>
+        <form class="flex flex-col sm:flex-row gap-2">
+          <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg text-brandBlack focus:outline-none focus:ring-2 focus:ring-brandGold">
+          <button type="submit" class="bg-brandGold hover:bg-white text-brandBlack font-bold px-6 py-3 rounded-lg transition">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandBlack text-brandWhite py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-display text-xl font-bold mb-4">AJ Globals</h4>
+          <p class="text-brandGray text-sm mb-4">Premium sports jerseys with global style, limited drops, and unmatched quality.</p>
+          <div class="flex gap-4">
+            <a href="https://instagram.com" target="_blank" class="text-brandGray hover:text-brandGold transition"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" class="text-brandGray hover:text-brandGold transition"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com" target="_blank" class="text-brandGray hover:text-brandGold transition"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Shop</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="catalog.html" class="hover:text-brandGold transition">All Jerseys</a></li>
+            <li><a href="new-arrivals.html" class="hover:text-brandGold transition">New Arrivals</a></li>
+            <li><a href="best-sellers.html" class="hover:text-brandGold transition">Best Sellers</a></li>
+            <li><a href="sale-items.html" class="hover:text-brandGold transition">Sale Items</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">About</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="about-us.html" class="hover:text-brandGold transition">Our Story</a></li>
+            <li><a href="materials.html" class="hover:text-brandGold transition">Materials</a></li>
+            <li><a href="sustainability.html" class="hover:text-brandGold transition">Sustainability</a></li>
+            <li><a href="careers.html" class="hover:text-brandGold transition">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h5 class="font-bold mb-4">Help</h5>
+          <ul class="space-y-2 text-sm text-brandGray">
+            <li><a href="contact.html" class="hover:text-brandGold transition">Contact Us</a></li>
+            <li><a href="faq.html" class="hover:text-brandGold transition">FAQs</a></li>
+            <li><a href="shipping-info.html" class="hover:text-brandGold transition">Shipping & Returns</a></li>
+            <li><a href="size-guide.html" class="hover:text-brandGold transition">Size Guide</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-brandGray/20 flex flex-col md:flex-row justify-between text-sm">
+        <p>&copy; <span id="year"></span> AJ Globals. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="privacy-policy.html" class="hover:text-brandGold transition">Privacy Policy</a>
+          <a href="terms-of-service.html" class="hover:text-brandGold transition">Terms of Service</a>
+          <a href="shipping-info.html" class="hover:text-brandGold transition">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden">
+    <div class="cart-overlay absolute inset-0 bg-black/50"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brandWhite shadow-xl transform transition-transform duration-300 translate-x-full">
+      <div class="h-full flex flex-col">
+        <div class="p-6 border-b border-brandCream flex justify-between items-center">
+          <h3 class="text-xl font-display font-bold">Your Cart</h3>
+          <button id="closeCartBtn" class="text-xl hover:text-brandGold transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-6">
+          <!-- Cart items will be inserted here -->
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        </div>
+        
+        <div class="p-6 border-t border-brandCream">
+          <div class="flex justify-between mb-4">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold">GHS 0</span>
+          </div>
+          <button class="w-full py-3 bg-brandBlack text-white font-bold rounded hover:bg-brandGold hover:text-brandBlack transition">Checkout</button>
+          <p class="text-xs text-brandGray text-center mt-4">Free shipping on orders over GHS 1000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Added to Cart Notification -->
+  <div id="addedToCart" class="fixed bottom-4 right-4 bg-brandBlack text-white px-6 py-3 rounded shadow-lg z-50 hidden animate-fade-in">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-check-circle text-brandGold"></i>
+      <span>Added to cart</span>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Countdown timer for sale
+    function updateCountdown() {
+      const now = new Date();
+      const endDate = new Date();
+      endDate.setDate(now.getDate() + 2); // Sale ends in 2 days
+      
+      const diff = endDate - now;
+      
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById("countdown").textContent = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+    
+    closeMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+    
+    // Cart functionality
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartSubtotalEl = document.getElementById("cartSubtotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const addedToCartEl = document.getElementById("addedToCart");
+    
+    let cart = JSON.parse(localStorage.getItem("ajCart") || "[]");
+    
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.classList.toggle("hidden", count === 0);
+    }
+    
+    function updateCartModal() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="text-center py-12 text-brandGray">
+            <i class="fas fa-shopping-bag text-4xl mb-4"></i>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartSubtotalEl.textContent = "GHS 0";
+        return;
+      }
+      
+      let itemsHTML = "";
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        
+        itemsHTML += `
+          <div class="cart-item flex gap-4 py-4 border-b border-brandCream/50 last:border-0">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-grow">
+              <h4 class="font-semibold">${item.name}</h4>
+              <p class="text-sm text-brandGray">GHS ${item.price.toFixed(2)}</p>
+              <div class="flex items-center gap-2 mt-2">
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="-1">-</button>
+                <span class="text-sm">${item.qty}</span>
+                <button class="change-qty px-2 text-sm border rounded" data-id="${item.id}" data-change="1">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-semibold">GHS ${itemTotal.toFixed(2)}</p>
+              <button class="remove-item text-xs text-brandGray hover:text-brandGold mt-2" data-id="${item.id}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = itemsHTML;
+      cartSubtotalEl.textContent = `GHS ${subtotal.toFixed(2)}`;
+      
+      // Add event listeners to quantity buttons
+      document.querySelectorAll(".change-qty").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          const change = parseInt(this.dataset.change);
+          updateCartItem(id, change);
+        });
+      });
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll(".remove-item").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const id = this.dataset.id;
+          removeCartItem(id);
+        });
+      });
+    }
+    
+    function updateCartItem(id, change) {
+      const itemIndex = cart.findIndex(item => item.id === id);
+      if (itemIndex === -1) return;
+      
+      cart[itemIndex].qty += change;
+      
+      if (cart[itemIndex].qty < 1) {
+        cart.splice(itemIndex, 1);
+      }
+      
+      saveCart();
+    }
+    
+    function removeCartItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+    }
+    
+    function saveCart() {
+      localStorage.setItem("ajCart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartModal();
+    }
+    
+    function showAddedToCart() {
+      addedToCartEl.classList.remove("hidden");
+      setTimeout(() => {
+        addedToCartEl.classList.add("hidden");
+      }, 2000);
+    }
+    
+    // Initialize cart
+    updateCartCount();
+    updateCartModal();
+    
+    // Cart modal toggle
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+      setTimeout(() => {
+        document.querySelector("#cartModal > div:last-child").style.transform = "translateX(0)";
+      }, 10);
+    });
+    
+    closeCartBtn.addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Close cart when clicking outside
+    document.querySelector(".cart-overlay").addEventListener("click", () => {
+      document.querySelector("#cartModal > div:last-child").style.transform = "translateX(100%)";
+      setTimeout(() => {
+        cartModal.classList.add("hidden");
+      }, 300);
+    });
+    
+    // Add to cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+        
+        const existingItem = cart.find(item => item.id === id);
+        
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            id,
+            name,
+            price,
+            image,
+            qty: 1
+          });
+        }
+        
+        saveCart();
+        showAddedToCart();
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
